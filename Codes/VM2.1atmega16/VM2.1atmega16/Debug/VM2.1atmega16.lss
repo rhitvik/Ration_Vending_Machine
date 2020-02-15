@@ -1,0 +1,2229 @@
+
+VM2.1atmega16.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000a4c  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         0000015c  00800060  00000a4c  00000ae0  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          0000000f  008001bc  008001bc  00000c3c  2**0
+                  ALLOC
+  3 .stab         00000c18  00000000  00000000  00000c3c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  4 .stabstr      000001ab  00000000  00000000  00001854  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_aranges 00000080  00000000  00000000  00001a00  2**3
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00001628  00000000  00000000  00001a80  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 0000023f  00000000  00000000  000030a8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   000007d7  00000000  00000000  000032e7  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  000002d4  00000000  00000000  00003ac0  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000007ac  00000000  00000000  00003d94  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    000005c0  00000000  00000000  00004540  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 7d 04 	jmp	0x8fa	; 0x8fa <__vector_9>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d4 e0       	ldi	r29, 0x04	; 4
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	11 e0       	ldi	r17, 0x01	; 1
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	ec e4       	ldi	r30, 0x4C	; 76
+  68:	fa e0       	ldi	r31, 0x0A	; 10
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	ac 3b       	cpi	r26, 0xBC	; 188
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	11 e0       	ldi	r17, 0x01	; 1
+  78:	ac eb       	ldi	r26, 0xBC	; 188
+  7a:	b1 e0       	ldi	r27, 0x01	; 1
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	ab 3c       	cpi	r26, 0xCB	; 203
+  82:	b1 07       	cpc	r27, r17
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 3e 04 	call	0x87c	; 0x87c <main>
+  8a:	0c 94 24 05 	jmp	0xa48	; 0xa48 <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <_Z24initialise_GPIO_servicesv>:
+		
+}
+////////////////////
+void initialise_GPIO_services(void)
+{
+	DDRA = 0b11100000;
+  92:	80 ee       	ldi	r24, 0xE0	; 224
+  94:	8a bb       	out	0x1a, r24	; 26
+	DDRC = 0b00010000;
+  96:	80 e1       	ldi	r24, 0x10	; 16
+  98:	84 bb       	out	0x14, r24	; 20
+	DDRD = 0b11111100;
+  9a:	8c ef       	ldi	r24, 0xFC	; 252
+  9c:	81 bb       	out	0x11, r24	; 17
+	
+	PORTA = 0b00011111;
+  9e:	8f e1       	ldi	r24, 0x1F	; 31
+  a0:	8b bb       	out	0x1b, r24	; 27
+	PORTC = 0b11101111;
+  a2:	8f ee       	ldi	r24, 0xEF	; 239
+  a4:	85 bb       	out	0x15, r24	; 21
+	PORTD = 0b00000000;
+  a6:	12 ba       	out	0x12, r1	; 18
+}
+  a8:	08 95       	ret
+
+000000aa <_Z8debouncev>:
+	confidence_level++;
+	if (confidence_level>=500)
+	{
+		confidence_level=0;
+	}
+}
+  aa:	08 95       	ret
+
+000000ac <_Z19initialize_PWM_modev>:
+////////////////////
+void initialize_PWM_mode(void)
+{
+	TCCR1A |= (1<<WGM11);
+  ac:	8f b5       	in	r24, 0x2f	; 47
+  ae:	82 60       	ori	r24, 0x02	; 2
+  b0:	8f bd       	out	0x2f, r24	; 47
+	TCCR1B |= (1<<WGM12) |(1<<WGM13) |(1<<CS10);
+  b2:	8e b5       	in	r24, 0x2e	; 46
+  b4:	89 61       	ori	r24, 0x19	; 25
+  b6:	8e bd       	out	0x2e, r24	; 46
+	ICR1 = 19999; //top value
+  b8:	8f e1       	ldi	r24, 0x1F	; 31
+  ba:	9e e4       	ldi	r25, 0x4E	; 78
+  bc:	97 bd       	out	0x27, r25	; 39
+  be:	86 bd       	out	0x26, r24	; 38
+	TCNT1 = 0;
+  c0:	1d bc       	out	0x2d, r1	; 45
+  c2:	1c bc       	out	0x2c, r1	; 44
+}
+  c4:	08 95       	ret
+
+000000c6 <_Z15dispatch_motor2v>:
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  c6:	80 e1       	ldi	r24, 0x10	; 16
+  c8:	8a 95       	dec	r24
+  ca:	f1 f7       	brne	.-4      	; 0xc8 <_Z15dispatch_motor2v+0x2>
+  cc:	00 c0       	rjmp	.+0      	; 0xce <_Z15dispatch_motor2v+0x8>
+///////////////////
+void dispatch_motor2(void)
+{
+	_delay_us(50);
+	PORTD |= (1<<PIND2);
+  ce:	92 9a       	sbi	0x12, 2	; 18
+	PORTD &=~ (1<<PIND3);
+  d0:	93 98       	cbi	0x12, 3	; 18
+  d2:	80 e1       	ldi	r24, 0x10	; 16
+  d4:	8a 95       	dec	r24
+  d6:	f1 f7       	brne	.-4      	; 0xd4 <_Z15dispatch_motor2v+0xe>
+  d8:	00 c0       	rjmp	.+0      	; 0xda <_Z15dispatch_motor2v+0x14>
+	_delay_us(50);
+}
+  da:	08 95       	ret
+
+000000dc <_Z16start_PWM_motor2v>:
+void start_PWM_motor2(void)
+{
+	TCCR1A |= (1<<COM1B1);
+  dc:	8f b5       	in	r24, 0x2f	; 47
+  de:	80 62       	ori	r24, 0x20	; 32
+  e0:	8f bd       	out	0x2f, r24	; 47
+	OCR1B = 5000;  //calibrate 
+  e2:	88 e8       	ldi	r24, 0x88	; 136
+  e4:	93 e1       	ldi	r25, 0x13	; 19
+  e6:	99 bd       	out	0x29, r25	; 41
+  e8:	88 bd       	out	0x28, r24	; 40
+}
+  ea:	08 95       	ret
+
+000000ec <_Z15stop_PWM_motor2v>:
+void stop_PWM_motor2(void)
+{
+	TCCR1A &=~ (1<<COM1B1);
+  ec:	8f b5       	in	r24, 0x2f	; 47
+  ee:	8f 7d       	andi	r24, 0xDF	; 223
+  f0:	8f bd       	out	0x2f, r24	; 47
+	OCR1B = 0;
+  f2:	19 bc       	out	0x29, r1	; 41
+  f4:	18 bc       	out	0x28, r1	; 40
+}
+  f6:	08 95       	ret
+
+000000f8 <_Z15disable_driver2v>:
+  f8:	80 e1       	ldi	r24, 0x10	; 16
+  fa:	8a 95       	dec	r24
+  fc:	f1 f7       	brne	.-4      	; 0xfa <_Z15disable_driver2v+0x2>
+  fe:	00 c0       	rjmp	.+0      	; 0x100 <_Z15disable_driver2v+0x8>
+void disable_driver2(void)
+{
+	_delay_us(50);
+	PORTD &=~ (1<<PIND2);
+ 100:	92 98       	cbi	0x12, 2	; 18
+	PORTD &=~ (1<<PIND3);
+ 102:	93 98       	cbi	0x12, 3	; 18
+	PORTD &=~ (1<<PIND4);
+ 104:	94 98       	cbi	0x12, 4	; 18
+ 106:	80 e1       	ldi	r24, 0x10	; 16
+ 108:	8a 95       	dec	r24
+ 10a:	f1 f7       	brne	.-4      	; 0x108 <_Z15disable_driver2v+0x10>
+ 10c:	00 c0       	rjmp	.+0      	; 0x10e <_Z15disable_driver2v+0x16>
+	_delay_us(50);
+}
+ 10e:	08 95       	ret
+
+00000110 <_Z15dispatch_motor3v>:
+ 110:	80 e1       	ldi	r24, 0x10	; 16
+ 112:	8a 95       	dec	r24
+ 114:	f1 f7       	brne	.-4      	; 0x112 <_Z15dispatch_motor3v+0x2>
+ 116:	00 c0       	rjmp	.+0      	; 0x118 <_Z15dispatch_motor3v+0x8>
+////////////////////
+void dispatch_motor3(void)
+{
+	_delay_us(50);
+	PORTD |= (1<<PIND7);
+ 118:	97 9a       	sbi	0x12, 7	; 18
+	PORTD &=~ (1<<PIND6);
+ 11a:	96 98       	cbi	0x12, 6	; 18
+ 11c:	80 e1       	ldi	r24, 0x10	; 16
+ 11e:	8a 95       	dec	r24
+ 120:	f1 f7       	brne	.-4      	; 0x11e <_Z15dispatch_motor3v+0xe>
+ 122:	00 c0       	rjmp	.+0      	; 0x124 <_Z15dispatch_motor3v+0x14>
+	_delay_us(50);
+}
+ 124:	08 95       	ret
+
+00000126 <_Z16start_PWM_motor3v>:
+void start_PWM_motor3(void)
+{
+	TCCR1A |= (1<<COM1A1);
+ 126:	8f b5       	in	r24, 0x2f	; 47
+ 128:	80 68       	ori	r24, 0x80	; 128
+ 12a:	8f bd       	out	0x2f, r24	; 47
+	OCR1A = 5000; //calibrate
+ 12c:	88 e8       	ldi	r24, 0x88	; 136
+ 12e:	93 e1       	ldi	r25, 0x13	; 19
+ 130:	9b bd       	out	0x2b, r25	; 43
+ 132:	8a bd       	out	0x2a, r24	; 42
+}
+ 134:	08 95       	ret
+
+00000136 <_Z15stop_PWM_motor3v>:
+void stop_PWM_motor3(void)
+{
+	TCCR1A &=~ (1<<COM1A1);
+ 136:	8f b5       	in	r24, 0x2f	; 47
+ 138:	8f 77       	andi	r24, 0x7F	; 127
+ 13a:	8f bd       	out	0x2f, r24	; 47
+	OCR1A = 0;
+ 13c:	1b bc       	out	0x2b, r1	; 43
+ 13e:	1a bc       	out	0x2a, r1	; 42
+}
+ 140:	08 95       	ret
+
+00000142 <_Z15disable_driver3v>:
+void disable_driver3(void)
+{
+	PORTD &=~ (1<<PIND6);
+ 142:	96 98       	cbi	0x12, 6	; 18
+	PORTD &=~ (1<<PIND7);
+ 144:	97 98       	cbi	0x12, 7	; 18
+	PORTD &=~ (1<<PIND5);
+ 146:	95 98       	cbi	0x12, 5	; 18
+}
+ 148:	08 95       	ret
+
+0000014a <_Z15stock_checklistv>:
+///////////////////
+void stock_checklist(void)
+{
+	PORTC &= ~(1<<PINC4);
+ 14a:	ac 98       	cbi	0x15, 4	; 21
+		
+	if ( (bit_is_clear(PINC,5)) && (bit_is_clear(PINC,6)) && (bit_is_clear(PINC,7)) )
+ 14c:	9d 99       	sbic	0x13, 5	; 19
+ 14e:	5f c0       	rjmp	.+190    	; 0x20e <_Z15stock_checklistv+0xc4>
+ 150:	9e 99       	sbic	0x13, 6	; 19
+ 152:	5d c0       	rjmp	.+186    	; 0x20e <_Z15stock_checklistv+0xc4>
+ 154:	9f 99       	sbic	0x13, 7	; 19
+ 156:	5b c0       	rjmp	.+182    	; 0x20e <_Z15stock_checklistv+0xc4>
+	{
+		product_1_EMPTY = 1;
+ 158:	81 e0       	ldi	r24, 0x01	; 1
+ 15a:	80 93 bf 01 	sts	0x01BF, r24
+		product_2_EMPTY = 1;
+ 15e:	80 93 be 01 	sts	0x01BE, r24
+		product_3_EMPTY = 1;
+ 162:	80 93 bd 01 	sts	0x01BD, r24
+ 166:	08 95       	ret
+	}
+	else
+	if ( (bit_is_clear(PINC,5)) && (bit_is_clear(PINC,6)) && (bit_is_set(PINC,7)) )
+ 168:	9e 99       	sbic	0x13, 6	; 19
+ 16a:	53 c0       	rjmp	.+166    	; 0x212 <_Z15stock_checklistv+0xc8>
+ 16c:	9f 9b       	sbis	0x13, 7	; 19
+ 16e:	51 c0       	rjmp	.+162    	; 0x212 <_Z15stock_checklistv+0xc8>
+	{
+		product_1_EMPTY = 1;
+ 170:	81 e0       	ldi	r24, 0x01	; 1
+ 172:	80 93 bf 01 	sts	0x01BF, r24
+		product_2_EMPTY = 1;
+ 176:	80 93 be 01 	sts	0x01BE, r24
+		product_3_EMPTY = 0;
+ 17a:	10 92 bd 01 	sts	0x01BD, r1
+ 17e:	08 95       	ret
+	}
+	else
+	if ( (bit_is_set(PINC,5)) && (bit_is_clear(PINC,6)) && (bit_is_clear(PINC,7)) )
+ 180:	9e 99       	sbic	0x13, 6	; 19
+ 182:	49 c0       	rjmp	.+146    	; 0x216 <_Z15stock_checklistv+0xcc>
+ 184:	9f 99       	sbic	0x13, 7	; 19
+ 186:	47 c0       	rjmp	.+142    	; 0x216 <_Z15stock_checklistv+0xcc>
+	{
+		product_1_EMPTY = 0;
+ 188:	10 92 bf 01 	sts	0x01BF, r1
+		product_2_EMPTY = 1;
+ 18c:	81 e0       	ldi	r24, 0x01	; 1
+ 18e:	80 93 be 01 	sts	0x01BE, r24
+		product_3_EMPTY = 1;
+ 192:	80 93 bd 01 	sts	0x01BD, r24
+ 196:	08 95       	ret
+	}
+	else
+	if ( (bit_is_clear(PINC,5)) && (bit_is_set(PINC,6)) && (bit_is_clear(PINC,7)) )
+ 198:	9e 9b       	sbis	0x13, 6	; 19
+ 19a:	3f c0       	rjmp	.+126    	; 0x21a <_Z15stock_checklistv+0xd0>
+ 19c:	9f 99       	sbic	0x13, 7	; 19
+ 19e:	3d c0       	rjmp	.+122    	; 0x21a <_Z15stock_checklistv+0xd0>
+	{
+		product_1_EMPTY = 1;
+ 1a0:	81 e0       	ldi	r24, 0x01	; 1
+ 1a2:	80 93 bf 01 	sts	0x01BF, r24
+		product_2_EMPTY = 0;
+ 1a6:	10 92 be 01 	sts	0x01BE, r1
+		product_3_EMPTY = 1;
+ 1aa:	80 93 bd 01 	sts	0x01BD, r24
+ 1ae:	08 95       	ret
+	}
+	else
+	if ( (bit_is_clear(PINC,5)) && (bit_is_set(PINC,6)) && (bit_is_set(PINC,7)) )
+ 1b0:	9e 9b       	sbis	0x13, 6	; 19
+ 1b2:	35 c0       	rjmp	.+106    	; 0x21e <_Z15stock_checklistv+0xd4>
+ 1b4:	9f 9b       	sbis	0x13, 7	; 19
+ 1b6:	33 c0       	rjmp	.+102    	; 0x21e <_Z15stock_checklistv+0xd4>
+	{
+		product_1_EMPTY = 1;
+ 1b8:	81 e0       	ldi	r24, 0x01	; 1
+ 1ba:	80 93 bf 01 	sts	0x01BF, r24
+		product_2_EMPTY = 0;
+ 1be:	10 92 be 01 	sts	0x01BE, r1
+		product_3_EMPTY = 0;
+ 1c2:	10 92 bd 01 	sts	0x01BD, r1
+ 1c6:	08 95       	ret
+	}
+	else
+	if ( (bit_is_set(PINC,5)) && (bit_is_clear(PINC,6)) && (bit_is_set(PINC,7)) )
+ 1c8:	9e 99       	sbic	0x13, 6	; 19
+ 1ca:	2b c0       	rjmp	.+86     	; 0x222 <_Z15stock_checklistv+0xd8>
+ 1cc:	9f 9b       	sbis	0x13, 7	; 19
+ 1ce:	29 c0       	rjmp	.+82     	; 0x222 <_Z15stock_checklistv+0xd8>
+	{
+		product_1_EMPTY = 0;
+ 1d0:	10 92 bf 01 	sts	0x01BF, r1
+		product_2_EMPTY = 1;
+ 1d4:	81 e0       	ldi	r24, 0x01	; 1
+ 1d6:	80 93 be 01 	sts	0x01BE, r24
+		product_3_EMPTY = 0;
+ 1da:	10 92 bd 01 	sts	0x01BD, r1
+ 1de:	08 95       	ret
+	}
+	else
+	if ( (bit_is_set(PINC,5)) && (bit_is_set(PINC,6)) && (bit_is_clear(PINC,7)) )
+ 1e0:	9e 9b       	sbis	0x13, 6	; 19
+ 1e2:	21 c0       	rjmp	.+66     	; 0x226 <_Z15stock_checklistv+0xdc>
+ 1e4:	9f 99       	sbic	0x13, 7	; 19
+ 1e6:	1f c0       	rjmp	.+62     	; 0x226 <_Z15stock_checklistv+0xdc>
+	{
+		product_1_EMPTY = 0;
+ 1e8:	10 92 bf 01 	sts	0x01BF, r1
+		product_2_EMPTY = 0;
+ 1ec:	10 92 be 01 	sts	0x01BE, r1
+		product_3_EMPTY = 1;
+ 1f0:	81 e0       	ldi	r24, 0x01	; 1
+ 1f2:	80 93 bd 01 	sts	0x01BD, r24
+ 1f6:	08 95       	ret
+	}
+	else
+	if ( (bit_is_set(PINC,5)) && (bit_is_set(PINC,6)) && (bit_is_set(PINC,7)) )
+ 1f8:	9e 9b       	sbis	0x13, 6	; 19
+ 1fa:	17 c0       	rjmp	.+46     	; 0x22a <_Z15stock_checklistv+0xe0>
+ 1fc:	9f 9b       	sbis	0x13, 7	; 19
+ 1fe:	15 c0       	rjmp	.+42     	; 0x22a <_Z15stock_checklistv+0xe0>
+	{
+		product_1_EMPTY = 0;
+ 200:	10 92 bf 01 	sts	0x01BF, r1
+		product_2_EMPTY = 0;
+ 204:	10 92 be 01 	sts	0x01BE, r1
+		product_3_EMPTY = 0;
+ 208:	10 92 bd 01 	sts	0x01BD, r1
+ 20c:	08 95       	ret
+		product_1_EMPTY = 1;
+		product_2_EMPTY = 1;
+		product_3_EMPTY = 1;
+	}
+	else
+	if ( (bit_is_clear(PINC,5)) && (bit_is_clear(PINC,6)) && (bit_is_set(PINC,7)) )
+ 20e:	9d 9b       	sbis	0x13, 5	; 19
+ 210:	ab cf       	rjmp	.-170    	; 0x168 <_Z15stock_checklistv+0x1e>
+		product_1_EMPTY = 1;
+		product_2_EMPTY = 1;
+		product_3_EMPTY = 0;
+	}
+	else
+	if ( (bit_is_set(PINC,5)) && (bit_is_clear(PINC,6)) && (bit_is_clear(PINC,7)) )
+ 212:	9d 99       	sbic	0x13, 5	; 19
+ 214:	b5 cf       	rjmp	.-150    	; 0x180 <_Z15stock_checklistv+0x36>
+		product_1_EMPTY = 0;
+		product_2_EMPTY = 1;
+		product_3_EMPTY = 1;
+	}
+	else
+	if ( (bit_is_clear(PINC,5)) && (bit_is_set(PINC,6)) && (bit_is_clear(PINC,7)) )
+ 216:	9d 9b       	sbis	0x13, 5	; 19
+ 218:	bf cf       	rjmp	.-130    	; 0x198 <_Z15stock_checklistv+0x4e>
+		product_1_EMPTY = 1;
+		product_2_EMPTY = 0;
+		product_3_EMPTY = 1;
+	}
+	else
+	if ( (bit_is_clear(PINC,5)) && (bit_is_set(PINC,6)) && (bit_is_set(PINC,7)) )
+ 21a:	9d 9b       	sbis	0x13, 5	; 19
+ 21c:	c9 cf       	rjmp	.-110    	; 0x1b0 <_Z15stock_checklistv+0x66>
+		product_1_EMPTY = 1;
+		product_2_EMPTY = 0;
+		product_3_EMPTY = 0;
+	}
+	else
+	if ( (bit_is_set(PINC,5)) && (bit_is_clear(PINC,6)) && (bit_is_set(PINC,7)) )
+ 21e:	9d 99       	sbic	0x13, 5	; 19
+ 220:	d3 cf       	rjmp	.-90     	; 0x1c8 <_Z15stock_checklistv+0x7e>
+		product_1_EMPTY = 0;
+		product_2_EMPTY = 1;
+		product_3_EMPTY = 0;
+	}
+	else
+	if ( (bit_is_set(PINC,5)) && (bit_is_set(PINC,6)) && (bit_is_clear(PINC,7)) )
+ 222:	9d 99       	sbic	0x13, 5	; 19
+ 224:	dd cf       	rjmp	.-70     	; 0x1e0 <_Z15stock_checklistv+0x96>
+		product_1_EMPTY = 0;
+		product_2_EMPTY = 0;
+		product_3_EMPTY = 1;
+	}
+	else
+	if ( (bit_is_set(PINC,5)) && (bit_is_set(PINC,6)) && (bit_is_set(PINC,7)) )
+ 226:	9d 99       	sbic	0x13, 5	; 19
+ 228:	e7 cf       	rjmp	.-50     	; 0x1f8 <_Z15stock_checklistv+0xae>
+ 22a:	08 95       	ret
+
+0000022c <_Z17check_for_timeoutv>:
+}
+//////////////////
+void check_for_timeout(void)
+{
+	
+}
+ 22c:	08 95       	ret
+
+0000022e <_Z18initialize_counterv>:
+	TransmitUART(return_coin);//transmit UART to return coin
+}
+//////////////////
+void initialize_counter(void)
+{
+	TCCR0 |= (1<<CS01)|(1<<CS00);
+ 22e:	83 b7       	in	r24, 0x33	; 51
+ 230:	83 60       	ori	r24, 0x03	; 3
+ 232:	83 bf       	out	0x33, r24	; 51
+	TIMSK |= (1<<TOIE0);
+ 234:	89 b7       	in	r24, 0x39	; 57
+ 236:	81 60       	ori	r24, 0x01	; 1
+ 238:	89 bf       	out	0x39, r24	; 57
+	TCNT0 = 0;
+ 23a:	12 be       	out	0x32, r1	; 50
+}
+ 23c:	08 95       	ret
+
+0000023e <_Z12stop_counterv>:
+void stop_counter(void)
+{
+	TCCR0 &=~ (1<<CS00);
+ 23e:	83 b7       	in	r24, 0x33	; 51
+ 240:	8e 7f       	andi	r24, 0xFE	; 254
+ 242:	83 bf       	out	0x33, r24	; 51
+	TCCR0 &=~ (1<<CS01);
+ 244:	83 b7       	in	r24, 0x33	; 51
+ 246:	8d 7f       	andi	r24, 0xFD	; 253
+ 248:	83 bf       	out	0x33, r24	; 51
+	TIMSK &=~ (1<<TOIE0);
+ 24a:	89 b7       	in	r24, 0x39	; 57
+ 24c:	8e 7f       	andi	r24, 0xFE	; 254
+ 24e:	89 bf       	out	0x39, r24	; 57
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 250:	89 ef       	ldi	r24, 0xF9	; 249
+ 252:	90 e0       	ldi	r25, 0x00	; 0
+ 254:	01 97       	sbiw	r24, 0x01	; 1
+ 256:	f1 f7       	brne	.-4      	; 0x254 <_Z12stop_counterv+0x16>
+ 258:	00 c0       	rjmp	.+0      	; 0x25a <_Z12stop_counterv+0x1c>
+ 25a:	00 00       	nop
+	_delay_ms(1);
+	TCNT0=0;
+ 25c:	12 be       	out	0x32, r1	; 50
+}
+ 25e:	08 95       	ret
+
+00000260 <_Z5resetv>:
+/////////////////
+void reset(void)
+{
+	allow_refund = 0;
+ 260:	10 92 bc 01 	sts	0x01BC, r1
+	pressed = 0;
+ 264:	10 92 c4 01 	sts	0x01C4, r1
+	product = 0;
+ 268:	10 92 c3 01 	sts	0x01C3, r1
+	dataRecieved = 0;
+ 26c:	10 92 c2 01 	sts	0x01C2, r1
+	product_list = 0;
+ 270:	10 92 c1 01 	sts	0x01C1, r1
+	dispatch_successful = 0;
+ 274:	10 92 c0 01 	sts	0x01C0, r1
+	product_1_EMPTY = 0;
+ 278:	10 92 bf 01 	sts	0x01BF, r1
+	product_2_EMPTY = 0;
+ 27c:	10 92 be 01 	sts	0x01BE, r1
+	product_3_EMPTY = 0;	
+ 280:	10 92 bd 01 	sts	0x01BD, r1
+	
+	count = 0;
+ 284:	10 92 ca 01 	sts	0x01CA, r1
+ 288:	10 92 c9 01 	sts	0x01C9, r1
+	count1 = 0;
+ 28c:	10 92 c8 01 	sts	0x01C8, r1
+ 290:	10 92 c7 01 	sts	0x01C7, r1
+	mini_FAIL = 0;
+ 294:	10 92 c6 01 	sts	0x01C6, r1
+	FAIL = 0;
+ 298:	10 92 c5 01 	sts	0x01C5, r1
+	
+	PORTA = 0b00011111;
+ 29c:	8f e1       	ldi	r24, 0x1F	; 31
+ 29e:	8b bb       	out	0x1b, r24	; 27
+	PORTC = 0b11101111;
+ 2a0:	8f ee       	ldi	r24, 0xEF	; 239
+ 2a2:	85 bb       	out	0x15, r24	; 21
+	PORTD = 0b00000000;	
+ 2a4:	12 ba       	out	0x12, r1	; 18
+}
+ 2a6:	08 95       	ret
+
+000002a8 <_Z11UART_enablev>:
+/////////////////
+void UART_enable(void)
+{
+	int baud = 9600;	
+	UCSRA &= ~(1 << U2X);	
+ 2a8:	59 98       	cbi	0x0b, 1	; 11
+	uint16_t UBRRValue = lrint((F_CPU /(16L * baud)) - 1);	
+ 2aa:	60 e0       	ldi	r22, 0x00	; 0
+ 2ac:	70 e0       	ldi	r23, 0x00	; 0
+ 2ae:	80 ea       	ldi	r24, 0xA0	; 160
+ 2b0:	90 e4       	ldi	r25, 0x40	; 64
+ 2b2:	0e 94 c1 04 	call	0x982	; 0x982 <lrint>
+	//Put the upper part of the baud number here (bits 8 to 11)
+	UBRRH = (unsigned char) (UBRRValue >> 8);
+ 2b6:	70 bd       	out	0x20, r23	; 32
+	//Put the remaining part of the baud number here
+	UBRRL = (unsigned char) UBRRValue;
+ 2b8:	69 b9       	out	0x09, r22	; 9
+	//Enable the receiver and transmitter
+	UCSRB |= (1 << RXEN) | (1 << TXEN);
+ 2ba:	8a b1       	in	r24, 0x0a	; 10
+ 2bc:	88 61       	ori	r24, 0x18	; 24
+ 2be:	8a b9       	out	0x0a, r24	; 10
+	UCSRB &= ~(1 << TXCIE);
+ 2c0:	56 98       	cbi	0x0a, 6	; 10
+	UCSRB &= ~(1 << RXCIE);
+ 2c2:	57 98       	cbi	0x0a, 7	; 10
+	UCSRB &= ~(1 << UDRIE);
+ 2c4:	55 98       	cbi	0x0a, 5	; 10
+	//UCSRB |= (1 << TXCIE) | (1 << RXCIE) | (1 << UDRIE);	
+	UCSRC |= (1 << USBS); //Sets 2 stop bits
+ 2c6:	80 b5       	in	r24, 0x20	; 32
+ 2c8:	88 60       	ori	r24, 0x08	; 8
+ 2ca:	80 bd       	out	0x20, r24	; 32
+	UCSRC |= (1 << UPM1); //Sets parity to EVEN
+ 2cc:	80 b5       	in	r24, 0x20	; 32
+ 2ce:	80 62       	ori	r24, 0x20	; 32
+ 2d0:	80 bd       	out	0x20, r24	; 32
+	UCSRC |= (3 << UCSZ0); //Alternative code for 8-bit data length
+ 2d2:	80 b5       	in	r24, 0x20	; 32
+ 2d4:	86 60       	ori	r24, 0x06	; 6
+ 2d6:	80 bd       	out	0x20, r24	; 32
+}
+ 2d8:	08 95       	ret
+
+000002da <_Z11RecieveUARTv>:
+void RecieveUART(void)
+{
+	while (! (UCSRA & (1 << RXC)) );
+ 2da:	5f 9b       	sbis	0x0b, 7	; 11
+ 2dc:	fe cf       	rjmp	.-4      	; 0x2da <_Z11RecieveUARTv>
+	dataRecieved = UDR;
+ 2de:	8c b1       	in	r24, 0x0c	; 12
+ 2e0:	80 93 c2 01 	sts	0x01C2, r24
+}
+ 2e4:	08 95       	ret
+
+000002e6 <_Z12TransmitUARTh>:
+void TransmitUART(uint8_t data)
+{
+	while (! (UCSRA & (1 << UDRE)) );
+ 2e6:	5d 9b       	sbis	0x0b, 5	; 11
+ 2e8:	fe cf       	rjmp	.-4      	; 0x2e6 <_Z12TransmitUARTh>
+	UDR = data;
+ 2ea:	8c b9       	out	0x0c, r24	; 12
+}
+ 2ec:	08 95       	ret
+
+000002ee <_Z11return_COINv>:
+{
+	TransmitUART(accept_coin);//transmit UART to accept coin
+}
+void return_COIN(void)
+{
+	TransmitUART(return_coin);//transmit UART to return coin
+ 2ee:	8d ed       	ldi	r24, 0xDD	; 221
+ 2f0:	0e 94 73 01 	call	0x2e6	; 0x2e6 <_Z12TransmitUARTh>
+}
+ 2f4:	08 95       	ret
+
+000002f6 <_Z11accept_COINv>:
+	
+}
+//////////////////
+void accept_COIN(void)
+{
+	TransmitUART(accept_coin);//transmit UART to accept coin
+ 2f6:	8c ec       	ldi	r24, 0xCC	; 204
+ 2f8:	0e 94 73 01 	call	0x2e6	; 0x2e6 <_Z12TransmitUARTh>
+}
+ 2fc:	08 95       	ret
+
+000002fe <_Z10Peek_A_Boov>:
+	
+	DataDir_MrLCDsCrib=0xFF;
+}
+void Peek_A_Boo(void)
+{
+	MrLCDsControl |= 1<<LightSwitch;
+ 2fe:	dd 9a       	sbi	0x1b, 5	; 27
+	asm volatile ("nop");
+ 300:	00 00       	nop
+	asm volatile ("nop");
+ 302:	00 00       	nop
+	MrLCDsControl &=~ 1<<LightSwitch;
+ 304:	8b b3       	in	r24, 0x1b	; 27
+ 306:	80 7c       	andi	r24, 0xC0	; 192
+ 308:	8b bb       	out	0x1b, r24	; 27
+}
+ 30a:	08 95       	ret
+
+0000030c <_Z21Check_IF_MrLCD_isBusyv>:
+	UDR = data;
+}
+/////////////////
+void Check_IF_MrLCD_isBusy(void)
+{
+	DataDir_MrLCDsCrib=0;
+ 30c:	17 ba       	out	0x17, r1	; 23
+	MrLCDsControl |= 1<<ReadWrite;
+ 30e:	de 9a       	sbi	0x1b, 6	; 27
+	MrLCDsControl &=~ 1<<BiPolarMood;
+ 310:	8b b3       	in	r24, 0x1b	; 27
+ 312:	1b ba       	out	0x1b, r1	; 27
+	while(MrLCDsCrib >= 0x80)
+ 314:	c7 9b       	sbis	0x18, 7	; 24
+ 316:	04 c0       	rjmp	.+8      	; 0x320 <_Z21Check_IF_MrLCD_isBusyv+0x14>
+	{
+		Peek_A_Boo();
+ 318:	0e 94 7f 01 	call	0x2fe	; 0x2fe <_Z10Peek_A_Boov>
+void Check_IF_MrLCD_isBusy(void)
+{
+	DataDir_MrLCDsCrib=0;
+	MrLCDsControl |= 1<<ReadWrite;
+	MrLCDsControl &=~ 1<<BiPolarMood;
+	while(MrLCDsCrib >= 0x80)
+ 31c:	c7 99       	sbic	0x18, 7	; 24
+ 31e:	fc cf       	rjmp	.-8      	; 0x318 <_Z21Check_IF_MrLCD_isBusyv+0xc>
+	{
+		Peek_A_Boo();
+	}
+	
+	DataDir_MrLCDsCrib=0xFF;
+ 320:	8f ef       	ldi	r24, 0xFF	; 255
+ 322:	87 bb       	out	0x17, r24	; 23
+}
+ 324:	08 95       	ret
+
+00000326 <_Z14Send_A_Commandc>:
+	asm volatile ("nop");
+	asm volatile ("nop");
+	MrLCDsControl &=~ 1<<LightSwitch;
+}
+void Send_A_Command(char command)
+{
+ 326:	cf 93       	push	r28
+ 328:	c8 2f       	mov	r28, r24
+	Check_IF_MrLCD_isBusy();
+ 32a:	0e 94 86 01 	call	0x30c	; 0x30c <_Z21Check_IF_MrLCD_isBusyv>
+	MrLCDsCrib = command;
+ 32e:	c8 bb       	out	0x18, r28	; 24
+	MrLCDsControl &=~ (1<<ReadWrite|1<<BiPolarMood);
+ 330:	8b b3       	in	r24, 0x1b	; 27
+ 332:	8f 73       	andi	r24, 0x3F	; 63
+ 334:	8b bb       	out	0x1b, r24	; 27
+	Peek_A_Boo();
+ 336:	0e 94 7f 01 	call	0x2fe	; 0x2fe <_Z10Peek_A_Boov>
+	MrLCDsCrib = 0;
+ 33a:	18 ba       	out	0x18, r1	; 24
+}
+ 33c:	cf 91       	pop	r28
+ 33e:	08 95       	ret
+
+00000340 <_Z16Send_A_Characterc>:
+void Send_A_Character(char character)
+{
+ 340:	cf 93       	push	r28
+ 342:	c8 2f       	mov	r28, r24
+	Check_IF_MrLCD_isBusy();
+ 344:	0e 94 86 01 	call	0x30c	; 0x30c <_Z21Check_IF_MrLCD_isBusyv>
+	MrLCDsCrib = character;
+ 348:	c8 bb       	out	0x18, r28	; 24
+	MrLCDsControl &=~ (1<<ReadWrite);
+ 34a:	de 98       	cbi	0x1b, 6	; 27
+	MrLCDsControl |= (1<<BiPolarMood);
+ 34c:	df 9a       	sbi	0x1b, 7	; 27
+	Peek_A_Boo();
+ 34e:	0e 94 7f 01 	call	0x2fe	; 0x2fe <_Z10Peek_A_Boov>
+	MrLCDsCrib = 0;
+ 352:	18 ba       	out	0x18, r1	; 24
+}
+ 354:	cf 91       	pop	r28
+ 356:	08 95       	ret
+
+00000358 <_Z13Send_A_StringPc>:
+void Send_A_String(char *stringOfCharacters)
+{
+ 358:	cf 93       	push	r28
+ 35a:	df 93       	push	r29
+ 35c:	ec 01       	movw	r28, r24
+	while(*stringOfCharacters > 0)
+ 35e:	88 81       	ld	r24, Y
+ 360:	88 23       	and	r24, r24
+ 362:	61 f0       	breq	.+24     	; 0x37c <_Z13Send_A_StringPc+0x24>
+	MrLCDsControl &=~ (1<<ReadWrite);
+	MrLCDsControl |= (1<<BiPolarMood);
+	Peek_A_Boo();
+	MrLCDsCrib = 0;
+}
+void Send_A_String(char *stringOfCharacters)
+ 364:	21 96       	adiw	r28, 0x01	; 1
+{
+	while(*stringOfCharacters > 0)
+	{
+		Send_A_Character(*stringOfCharacters++);
+ 366:	0e 94 a0 01 	call	0x340	; 0x340 <_Z16Send_A_Characterc>
+ 36a:	87 e8       	ldi	r24, 0x87	; 135
+ 36c:	93 e1       	ldi	r25, 0x13	; 19
+ 36e:	01 97       	sbiw	r24, 0x01	; 1
+ 370:	f1 f7       	brne	.-4      	; 0x36e <_Z13Send_A_StringPc+0x16>
+ 372:	00 c0       	rjmp	.+0      	; 0x374 <_Z13Send_A_StringPc+0x1c>
+ 374:	00 00       	nop
+	Peek_A_Boo();
+	MrLCDsCrib = 0;
+}
+void Send_A_String(char *stringOfCharacters)
+{
+	while(*stringOfCharacters > 0)
+ 376:	89 91       	ld	r24, Y+
+ 378:	88 23       	and	r24, r24
+ 37a:	a9 f7       	brne	.-22     	; 0x366 <_Z13Send_A_StringPc+0xe>
+	{
+		Send_A_Character(*stringOfCharacters++);
+		_delay_ms(20);
+	}
+}
+ 37c:	df 91       	pop	r29
+ 37e:	cf 91       	pop	r28
+ 380:	08 95       	ret
+
+00000382 <_Z17clear_LCD_displayv>:
+	Send_A_Command(0b00001100);
+	_delay_us(50);
+}
+void clear_LCD_display(void)
+{
+	Send_A_Command(0x01);//clrscr();
+ 382:	81 e0       	ldi	r24, 0x01	; 1
+ 384:	0e 94 93 01 	call	0x326	; 0x326 <_Z14Send_A_Commandc>
+ 388:	83 ef       	ldi	r24, 0xF3	; 243
+ 38a:	91 e0       	ldi	r25, 0x01	; 1
+ 38c:	01 97       	sbiw	r24, 0x01	; 1
+ 38e:	f1 f7       	brne	.-4      	; 0x38c <_Z17clear_LCD_displayv+0xa>
+ 390:	00 c0       	rjmp	.+0      	; 0x392 <_Z17clear_LCD_displayv+0x10>
+ 392:	00 00       	nop
+	_delay_ms(2);
+}
+ 394:	08 95       	ret
+
+00000396 <_Z24initialise_LCD_interfacev>:
+		_delay_ms(20);
+	}
+}
+void initialise_LCD_interface(void)
+{
+	DataDir_MrLCDsControl |= 1<<LightSwitch | 1<<ReadWrite | 1<<BiPolarMood;
+ 396:	8a b3       	in	r24, 0x1a	; 26
+ 398:	80 6e       	ori	r24, 0xE0	; 224
+ 39a:	8a bb       	out	0x1a, r24	; 26
+ 39c:	85 ea       	ldi	r24, 0xA5	; 165
+ 39e:	9e e0       	ldi	r25, 0x0E	; 14
+ 3a0:	01 97       	sbiw	r24, 0x01	; 1
+ 3a2:	f1 f7       	brne	.-4      	; 0x3a0 <_Z24initialise_LCD_interfacev+0xa>
+ 3a4:	00 c0       	rjmp	.+0      	; 0x3a6 <_Z24initialise_LCD_interfacev+0x10>
+ 3a6:	00 00       	nop
+	_delay_ms(15);
+	clear_LCD_display();
+ 3a8:	0e 94 c1 01 	call	0x382	; 0x382 <_Z17clear_LCD_displayv>
+	Send_A_Command(0x38);
+ 3ac:	88 e3       	ldi	r24, 0x38	; 56
+ 3ae:	0e 94 93 01 	call	0x326	; 0x326 <_Z14Send_A_Commandc>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 3b2:	90 e1       	ldi	r25, 0x10	; 16
+ 3b4:	9a 95       	dec	r25
+ 3b6:	f1 f7       	brne	.-4      	; 0x3b4 <_Z24initialise_LCD_interfacev+0x1e>
+ 3b8:	00 c0       	rjmp	.+0      	; 0x3ba <_Z24initialise_LCD_interfacev+0x24>
+	_delay_us(50);
+	Send_A_Command(0b00001100);
+ 3ba:	8c e0       	ldi	r24, 0x0C	; 12
+ 3bc:	0e 94 93 01 	call	0x326	; 0x326 <_Z14Send_A_Commandc>
+ 3c0:	80 e1       	ldi	r24, 0x10	; 16
+ 3c2:	8a 95       	dec	r24
+ 3c4:	f1 f7       	brne	.-4      	; 0x3c2 <_Z24initialise_LCD_interfacev+0x2c>
+ 3c6:	00 c0       	rjmp	.+0      	; 0x3c8 <_Z24initialise_LCD_interfacev+0x32>
+	_delay_us(50);
+}
+ 3c8:	08 95       	ret
+
+000003ca <_Z13LCDs_top_linev>:
+	Send_A_Command(0x01);//clrscr();
+	_delay_ms(2);
+}
+void LCDs_top_line(void)
+{
+	Send_A_Command(0X80);
+ 3ca:	80 e8       	ldi	r24, 0x80	; 128
+ 3cc:	0e 94 93 01 	call	0x326	; 0x326 <_Z14Send_A_Commandc>
+ 3d0:	80 e1       	ldi	r24, 0x10	; 16
+ 3d2:	8a 95       	dec	r24
+ 3d4:	f1 f7       	brne	.-4      	; 0x3d2 <_Z13LCDs_top_linev+0x8>
+ 3d6:	00 c0       	rjmp	.+0      	; 0x3d8 <_Z13LCDs_top_linev+0xe>
+	_delay_us(50);
+}
+ 3d8:	08 95       	ret
+
+000003da <_Z16LCDs_bottom_linev>:
+void LCDs_bottom_line(void)
+{	
+	Send_A_Command(0XC0);
+ 3da:	80 ec       	ldi	r24, 0xC0	; 192
+ 3dc:	0e 94 93 01 	call	0x326	; 0x326 <_Z14Send_A_Commandc>
+ 3e0:	80 e1       	ldi	r24, 0x10	; 16
+ 3e2:	8a 95       	dec	r24
+ 3e4:	f1 f7       	brne	.-4      	; 0x3e2 <_Z16LCDs_bottom_linev+0x8>
+ 3e6:	00 c0       	rjmp	.+0      	; 0x3e8 <_Z16LCDs_bottom_linev+0xe>
+	_delay_us(50);
+}
+ 3e8:	08 95       	ret
+
+000003ea <_Z15publish_resultsv>:
+}
+void publish_results(void)
+{
+	while(8)
+	{
+		RecieveUART();
+ 3ea:	0e 94 6d 01 	call	0x2da	; 0x2da <_Z11RecieveUARTv>
+		
+		if (dataRecieved == TY_for_shopping)
+ 3ee:	80 91 c2 01 	lds	r24, 0x01C2
+ 3f2:	8e 3d       	cpi	r24, 0xDE	; 222
+ 3f4:	e1 f4       	brne	.+56     	; 0x42e <_Z15publish_resultsv+0x44>
+ 3f6:	80 e1       	ldi	r24, 0x10	; 16
+ 3f8:	8a 95       	dec	r24
+ 3fa:	f1 f7       	brne	.-4      	; 0x3f8 <_Z15publish_resultsv+0xe>
+ 3fc:	00 c0       	rjmp	.+0      	; 0x3fe <_Z15publish_resultsv+0x14>
+		{
+			_delay_us(50);
+			clear_LCD_display();
+ 3fe:	0e 94 c1 01 	call	0x382	; 0x382 <_Z17clear_LCD_displayv>
+			LCDs_top_line();
+ 402:	0e 94 e5 01 	call	0x3ca	; 0x3ca <_Z13LCDs_top_linev>
+			Send_A_String("THANK YOU...HOPE");
+ 406:	80 e6       	ldi	r24, 0x60	; 96
+ 408:	90 e0       	ldi	r25, 0x00	; 0
+ 40a:	0e 94 ac 01 	call	0x358	; 0x358 <_Z13Send_A_StringPc>
+ 40e:	00 c0       	rjmp	.+0      	; 0x410 <_Z15publish_resultsv+0x26>
+ 410:	00 c0       	rjmp	.+0      	; 0x412 <_Z15publish_resultsv+0x28>
+ 412:	00 00       	nop
+			
+			_delay_us(5);
+			
+			LCDs_bottom_line();
+ 414:	0e 94 ed 01 	call	0x3da	; 0x3da <_Z16LCDs_bottom_linev>
+			Send_A_String("TO SEE YOU SOON");
+ 418:	81 e7       	ldi	r24, 0x71	; 113
+ 41a:	90 e0       	ldi	r25, 0x00	; 0
+ 41c:	0e 94 ac 01 	call	0x358	; 0x358 <_Z13Send_A_StringPc>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 420:	83 ed       	ldi	r24, 0xD3	; 211
+ 422:	90 e3       	ldi	r25, 0x30	; 48
+ 424:	01 97       	sbiw	r24, 0x01	; 1
+ 426:	f1 f7       	brne	.-4      	; 0x424 <_Z15publish_resultsv+0x3a>
+ 428:	00 c0       	rjmp	.+0      	; 0x42a <_Z15publish_resultsv+0x40>
+ 42a:	00 00       	nop
+ 42c:	08 95       	ret
+			_delay_ms(50);
+			
+			break;
+		}
+		else
+		if (dataRecieved == Pl_try_again)
+ 42e:	8d 3e       	cpi	r24, 0xED	; 237
+ 430:	e1 f6       	brne	.-72     	; 0x3ea <_Z15publish_resultsv>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 432:	90 e1       	ldi	r25, 0x10	; 16
+ 434:	9a 95       	dec	r25
+ 436:	f1 f7       	brne	.-4      	; 0x434 <_Z15publish_resultsv+0x4a>
+ 438:	00 c0       	rjmp	.+0      	; 0x43a <_Z15publish_resultsv+0x50>
+		{			
+			_delay_us(50);
+			clear_LCD_display();
+ 43a:	0e 94 c1 01 	call	0x382	; 0x382 <_Z17clear_LCD_displayv>
+			LCDs_top_line();
+ 43e:	0e 94 e5 01 	call	0x3ca	; 0x3ca <_Z13LCDs_top_linev>
+			Send_A_String("ERROR-404 PLEASE");
+ 442:	81 e8       	ldi	r24, 0x81	; 129
+ 444:	90 e0       	ldi	r25, 0x00	; 0
+ 446:	0e 94 ac 01 	call	0x358	; 0x358 <_Z13Send_A_StringPc>
+ 44a:	00 c0       	rjmp	.+0      	; 0x44c <_Z15publish_resultsv+0x62>
+ 44c:	00 c0       	rjmp	.+0      	; 0x44e <_Z15publish_resultsv+0x64>
+ 44e:	00 00       	nop
+			
+			_delay_us(5);
+			
+			LCDs_bottom_line();
+ 450:	0e 94 ed 01 	call	0x3da	; 0x3da <_Z16LCDs_bottom_linev>
+			Send_A_String("   TRY AGAIN   ");
+ 454:	82 e9       	ldi	r24, 0x92	; 146
+ 456:	90 e0       	ldi	r25, 0x00	; 0
+ 458:	0e 94 ac 01 	call	0x358	; 0x358 <_Z13Send_A_StringPc>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 45c:	83 ed       	ldi	r24, 0xD3	; 211
+ 45e:	90 e3       	ldi	r25, 0x30	; 48
+ 460:	01 97       	sbiw	r24, 0x01	; 1
+ 462:	f1 f7       	brne	.-4      	; 0x460 <__stack+0x1>
+ 464:	00 c0       	rjmp	.+0      	; 0x466 <__stack+0x7>
+ 466:	00 00       	nop
+ 468:	08 95       	ret
+
+0000046a <_Z15dispatch_resultv>:
+		dispatch_result();
+	}
+}
+void dispatch_result(void)
+{
+	if (dispatch_successful == 1)
+ 46a:	80 91 c0 01 	lds	r24, 0x01C0
+ 46e:	81 30       	cpi	r24, 0x01	; 1
+ 470:	29 f5       	brne	.+74     	; 0x4bc <_Z15dispatch_resultv+0x52>
+	{		
+		TransmitUART(0x69);
+ 472:	89 e6       	ldi	r24, 0x69	; 105
+ 474:	0e 94 73 01 	call	0x2e6	; 0x2e6 <_Z12TransmitUARTh>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 478:	00 c0       	rjmp	.+0      	; 0x47a <_Z15dispatch_resultv+0x10>
+ 47a:	00 c0       	rjmp	.+0      	; 0x47c <_Z15dispatch_resultv+0x12>
+ 47c:	00 00       	nop
+		_delay_us(5);
+		TransmitUART(accept_coin);
+ 47e:	8c ec       	ldi	r24, 0xCC	; 204
+ 480:	0e 94 73 01 	call	0x2e6	; 0x2e6 <_Z12TransmitUARTh>
+ 484:	80 e1       	ldi	r24, 0x10	; 16
+ 486:	8a 95       	dec	r24
+ 488:	f1 f7       	brne	.-4      	; 0x486 <_Z15dispatch_resultv+0x1c>
+ 48a:	00 c0       	rjmp	.+0      	; 0x48c <_Z15dispatch_resultv+0x22>
+		
+		_delay_us(50);
+		clear_LCD_display();
+ 48c:	0e 94 c1 01 	call	0x382	; 0x382 <_Z17clear_LCD_displayv>
+		LCDs_top_line();
+ 490:	0e 94 e5 01 	call	0x3ca	; 0x3ca <_Z13LCDs_top_linev>
+		Send_A_String("THANK YOU FOR");
+ 494:	82 ea       	ldi	r24, 0xA2	; 162
+ 496:	90 e0       	ldi	r25, 0x00	; 0
+ 498:	0e 94 ac 01 	call	0x358	; 0x358 <_Z13Send_A_StringPc>
+ 49c:	00 c0       	rjmp	.+0      	; 0x49e <_Z15dispatch_resultv+0x34>
+ 49e:	00 c0       	rjmp	.+0      	; 0x4a0 <_Z15dispatch_resultv+0x36>
+ 4a0:	00 00       	nop
+		
+		_delay_us(5);
+		
+		LCDs_bottom_line();
+ 4a2:	0e 94 ed 01 	call	0x3da	; 0x3da <_Z16LCDs_bottom_linev>
+		Send_A_String("YOUR SUPPORT");
+ 4a6:	80 eb       	ldi	r24, 0xB0	; 176
+ 4a8:	90 e0       	ldi	r25, 0x00	; 0
+ 4aa:	0e 94 ac 01 	call	0x358	; 0x358 <_Z13Send_A_StringPc>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 4ae:	83 ed       	ldi	r24, 0xD3	; 211
+ 4b0:	90 e3       	ldi	r25, 0x30	; 48
+ 4b2:	01 97       	sbiw	r24, 0x01	; 1
+ 4b4:	f1 f7       	brne	.-4      	; 0x4b2 <_Z15dispatch_resultv+0x48>
+ 4b6:	00 c0       	rjmp	.+0      	; 0x4b8 <_Z15dispatch_resultv+0x4e>
+ 4b8:	00 00       	nop
+ 4ba:	08 95       	ret
+		_delay_ms(50);
+	}
+	else
+	if (dispatch_successful == 0)
+ 4bc:	88 23       	and	r24, r24
+ 4be:	21 f5       	brne	.+72     	; 0x508 <_Z15dispatch_resultv+0x9e>
+	{
+		TransmitUART(0x69);
+ 4c0:	89 e6       	ldi	r24, 0x69	; 105
+ 4c2:	0e 94 73 01 	call	0x2e6	; 0x2e6 <_Z12TransmitUARTh>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 4c6:	00 c0       	rjmp	.+0      	; 0x4c8 <_Z15dispatch_resultv+0x5e>
+ 4c8:	00 c0       	rjmp	.+0      	; 0x4ca <_Z15dispatch_resultv+0x60>
+ 4ca:	00 00       	nop
+		_delay_us(5);
+		TransmitUART(return_coin);
+ 4cc:	8d ed       	ldi	r24, 0xDD	; 221
+ 4ce:	0e 94 73 01 	call	0x2e6	; 0x2e6 <_Z12TransmitUARTh>
+ 4d2:	90 e1       	ldi	r25, 0x10	; 16
+ 4d4:	9a 95       	dec	r25
+ 4d6:	f1 f7       	brne	.-4      	; 0x4d4 <_Z15dispatch_resultv+0x6a>
+ 4d8:	00 c0       	rjmp	.+0      	; 0x4da <_Z15dispatch_resultv+0x70>
+		
+		_delay_us(50);
+		clear_LCD_display();
+ 4da:	0e 94 c1 01 	call	0x382	; 0x382 <_Z17clear_LCD_displayv>
+		LCDs_top_line();
+ 4de:	0e 94 e5 01 	call	0x3ca	; 0x3ca <_Z13LCDs_top_linev>
+		Send_A_String("ERROR 404...");
+ 4e2:	8d eb       	ldi	r24, 0xBD	; 189
+ 4e4:	90 e0       	ldi	r25, 0x00	; 0
+ 4e6:	0e 94 ac 01 	call	0x358	; 0x358 <_Z13Send_A_StringPc>
+ 4ea:	00 c0       	rjmp	.+0      	; 0x4ec <_Z15dispatch_resultv+0x82>
+ 4ec:	00 c0       	rjmp	.+0      	; 0x4ee <_Z15dispatch_resultv+0x84>
+ 4ee:	00 00       	nop
+		
+		_delay_us(5);
+		
+		LCDs_bottom_line();
+ 4f0:	0e 94 ed 01 	call	0x3da	; 0x3da <_Z16LCDs_bottom_linev>
+		Send_A_String("PLEASE TRY AGAIN");
+ 4f4:	8a ec       	ldi	r24, 0xCA	; 202
+ 4f6:	90 e0       	ldi	r25, 0x00	; 0
+ 4f8:	0e 94 ac 01 	call	0x358	; 0x358 <_Z13Send_A_StringPc>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 4fc:	83 ed       	ldi	r24, 0xD3	; 211
+ 4fe:	90 e3       	ldi	r25, 0x30	; 48
+ 500:	01 97       	sbiw	r24, 0x01	; 1
+ 502:	f1 f7       	brne	.-4      	; 0x500 <_Z15dispatch_resultv+0x96>
+ 504:	00 c0       	rjmp	.+0      	; 0x506 <_Z15dispatch_resultv+0x9c>
+ 506:	00 00       	nop
+ 508:	08 95       	ret
+
+0000050a <_Z13stop_dispatchv>:
+		stop_dispatch();
+	}
+}
+void stop_dispatch(void)
+{
+	if (product == 1)
+ 50a:	80 91 c3 01 	lds	r24, 0x01C3
+ 50e:	81 30       	cpi	r24, 0x01	; 1
+ 510:	19 f4       	brne	.+6      	; 0x518 <_Z13stop_dispatchv+0xe>
+	{
+		//transmit UART to microcontroller 1 to stop
+		dispatch_result();
+ 512:	0e 94 35 02 	call	0x46a	; 0x46a <_Z15dispatch_resultv>
+ 516:	08 95       	ret
+	}
+	else
+	if (product == 2)
+ 518:	82 30       	cpi	r24, 0x02	; 2
+ 51a:	39 f4       	brne	.+14     	; 0x52a <_Z13stop_dispatchv+0x20>
+	{
+		stop_PWM_motor2();
+ 51c:	0e 94 76 00 	call	0xec	; 0xec <_Z15stop_PWM_motor2v>
+		disable_driver2();
+ 520:	0e 94 7c 00 	call	0xf8	; 0xf8 <_Z15disable_driver2v>
+		
+		dispatch_result();
+ 524:	0e 94 35 02 	call	0x46a	; 0x46a <_Z15dispatch_resultv>
+ 528:	08 95       	ret
+	}
+	else
+	if (product == 3)
+ 52a:	83 30       	cpi	r24, 0x03	; 3
+ 52c:	39 f4       	brne	.+14     	; 0x53c <_Z13stop_dispatchv+0x32>
+	{
+		stop_PWM_motor3();
+ 52e:	0e 94 9b 00 	call	0x136	; 0x136 <_Z15stop_PWM_motor3v>
+		disable_driver3();
+ 532:	0e 94 a1 00 	call	0x142	; 0x142 <_Z15disable_driver3v>
+		
+		dispatch_result();
+ 536:	0e 94 35 02 	call	0x46a	; 0x46a <_Z15dispatch_resultv>
+ 53a:	08 95       	ret
+	}
+	else
+	if (product == 4)
+ 53c:	84 30       	cpi	r24, 0x04	; 4
+ 53e:	11 f4       	brne	.+4      	; 0x544 <_Z13stop_dispatchv+0x3a>
+	{
+		dispatch_result();
+ 540:	0e 94 35 02 	call	0x46a	; 0x46a <_Z15dispatch_resultv>
+ 544:	08 95       	ret
+
+00000546 <_Z29check_for_dispatch_completionv>:
+		product = 4;	
+	}
+}
+void check_for_dispatch_completion(void)
+{
+	if (product == 1)
+ 546:	80 91 c3 01 	lds	r24, 0x01C3
+ 54a:	81 30       	cpi	r24, 0x01	; 1
+ 54c:	49 f4       	brne	.+18     	; 0x560 <_Z29check_for_dispatch_completionv+0x1a>
+	{
+		while(4)
+		{			
+			if (bit_is_clear(PINA,0))
+ 54e:	89 b3       	in	r24, 0x19	; 25
+ 550:	80 fd       	sbrc	r24, 0
+ 552:	fd cf       	rjmp	.-6      	; 0x54e <_Z29check_for_dispatch_completionv+0x8>
+			{
+				dispatch_successful = 1;
+ 554:	81 e0       	ldi	r24, 0x01	; 1
+ 556:	80 93 c0 01 	sts	0x01C0, r24
+				
+				stop_dispatch();
+ 55a:	0e 94 85 02 	call	0x50a	; 0x50a <_Z13stop_dispatchv>
+ 55e:	08 95       	ret
+				break;
+			}						
+		}
+	}
+	else
+	if (product == 2)
+ 560:	82 30       	cpi	r24, 0x02	; 2
+ 562:	41 f4       	brne	.+16     	; 0x574 <_Z29check_for_dispatch_completionv+0x2e>
+	{
+		while(5)
+		{
+			if (bit_is_clear(PINA,1))
+ 564:	c9 99       	sbic	0x19, 1	; 25
+ 566:	fe cf       	rjmp	.-4      	; 0x564 <_Z29check_for_dispatch_completionv+0x1e>
+			{
+				dispatch_successful = 1;
+ 568:	81 e0       	ldi	r24, 0x01	; 1
+ 56a:	80 93 c0 01 	sts	0x01C0, r24
+				
+				stop_dispatch();
+ 56e:	0e 94 85 02 	call	0x50a	; 0x50a <_Z13stop_dispatchv>
+ 572:	08 95       	ret
+				break;
+			}
+		}
+	}
+	else
+	if (product == 3)
+ 574:	83 30       	cpi	r24, 0x03	; 3
+ 576:	41 f4       	brne	.+16     	; 0x588 <_Z29check_for_dispatch_completionv+0x42>
+	{
+		while(6)
+		{
+			if (bit_is_clear(PINA,2))
+ 578:	ca 99       	sbic	0x19, 2	; 25
+ 57a:	fe cf       	rjmp	.-4      	; 0x578 <_Z29check_for_dispatch_completionv+0x32>
+			{
+				dispatch_successful = 1;
+ 57c:	81 e0       	ldi	r24, 0x01	; 1
+ 57e:	80 93 c0 01 	sts	0x01C0, r24
+				
+				stop_dispatch();
+ 582:	0e 94 85 02 	call	0x50a	; 0x50a <_Z13stop_dispatchv>
+ 586:	08 95       	ret
+				break;
+			}
+		}
+	}
+	else
+	if (product == 4)
+ 588:	84 30       	cpi	r24, 0x04	; 4
+ 58a:	21 f4       	brne	.+8      	; 0x594 <_Z29check_for_dispatch_completionv+0x4e>
+	{
+		dispatch_successful = 0;
+ 58c:	10 92 c0 01 	sts	0x01C0, r1
+		
+		stop_dispatch();
+ 590:	0e 94 85 02 	call	0x50a	; 0x50a <_Z13stop_dispatchv>
+ 594:	08 95       	ret
+
+00000596 <_Z26hang_on_please_dispatchingv>:
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 596:	00 c0       	rjmp	.+0      	; 0x598 <_Z26hang_on_please_dispatchingv+0x2>
+ 598:	00 c0       	rjmp	.+0      	; 0x59a <_Z26hang_on_please_dispatchingv+0x4>
+ 59a:	00 00       	nop
+}
+//////////////////
+void hang_on_please_dispatching(void)
+{
+	_delay_us(5);
+	clear_LCD_display();
+ 59c:	0e 94 c1 01 	call	0x382	; 0x382 <_Z17clear_LCD_displayv>
+	LCDs_top_line();
+ 5a0:	0e 94 e5 01 	call	0x3ca	; 0x3ca <_Z13LCDs_top_linev>
+	Send_A_String("hang on please..");
+ 5a4:	8b ed       	ldi	r24, 0xDB	; 219
+ 5a6:	90 e0       	ldi	r25, 0x00	; 0
+ 5a8:	0e 94 ac 01 	call	0x358	; 0x358 <_Z13Send_A_StringPc>
+ 5ac:	00 c0       	rjmp	.+0      	; 0x5ae <_Z26hang_on_please_dispatchingv+0x18>
+ 5ae:	00 c0       	rjmp	.+0      	; 0x5b0 <_Z26hang_on_please_dispatchingv+0x1a>
+ 5b0:	00 00       	nop
+	
+	_delay_us(5);
+	
+	LCDs_bottom_line();
+ 5b2:	0e 94 ed 01 	call	0x3da	; 0x3da <_Z16LCDs_bottom_linev>
+	Send_A_String("dispatching....");
+ 5b6:	8c ee       	ldi	r24, 0xEC	; 236
+ 5b8:	90 e0       	ldi	r25, 0x00	; 0
+ 5ba:	0e 94 ac 01 	call	0x358	; 0x358 <_Z13Send_A_StringPc>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 5be:	83 ed       	ldi	r24, 0xD3	; 211
+ 5c0:	90 e3       	ldi	r25, 0x30	; 48
+ 5c2:	01 97       	sbiw	r24, 0x01	; 1
+ 5c4:	f1 f7       	brne	.-4      	; 0x5c2 <_Z26hang_on_please_dispatchingv+0x2c>
+ 5c6:	00 c0       	rjmp	.+0      	; 0x5c8 <_Z26hang_on_please_dispatchingv+0x32>
+ 5c8:	00 00       	nop
+	_delay_ms(50);
+}
+ 5ca:	08 95       	ret
+
+000005cc <_Z16dispatch_producth>:
+	}
+}
+///////////////////
+void dispatch_product(uint8_t product_no)
+{	
+	if (product_no == 1)
+ 5cc:	81 30       	cpi	r24, 0x01	; 1
+ 5ce:	81 f4       	brne	.+32     	; 0x5f0 <_Z16dispatch_producth+0x24>
+	{
+		hang_on_please_dispatching();
+ 5d0:	0e 94 cb 02 	call	0x596	; 0x596 <_Z26hang_on_please_dispatchingv>
+		
+		TransmitUART(product_1);//dispatch product 1
+ 5d4:	81 e1       	ldi	r24, 0x11	; 17
+ 5d6:	0e 94 73 01 	call	0x2e6	; 0x2e6 <_Z12TransmitUARTh>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 5da:	80 e1       	ldi	r24, 0x10	; 16
+ 5dc:	8a 95       	dec	r24
+ 5de:	f1 f7       	brne	.-4      	; 0x5dc <_Z16dispatch_producth+0x10>
+ 5e0:	00 c0       	rjmp	.+0      	; 0x5e2 <_Z16dispatch_producth+0x16>
+		_delay_us(50);
+		TransmitUART(product_1);//dispatch product 1
+ 5e2:	81 e1       	ldi	r24, 0x11	; 17
+ 5e4:	0e 94 73 01 	call	0x2e6	; 0x2e6 <_Z12TransmitUARTh>
+		product = 1;
+ 5e8:	81 e0       	ldi	r24, 0x01	; 1
+ 5ea:	80 93 c3 01 	sts	0x01C3, r24
+ 5ee:	08 95       	ret
+	}
+	else
+	if (product_no == 2)
+ 5f0:	82 30       	cpi	r24, 0x02	; 2
+ 5f2:	a1 f4       	brne	.+40     	; 0x61c <_Z16dispatch_producth+0x50>
+	{
+		hang_on_please_dispatching();
+ 5f4:	0e 94 cb 02 	call	0x596	; 0x596 <_Z26hang_on_please_dispatchingv>
+		
+		TransmitUART(product_2);//dispatch product 2
+ 5f8:	82 e2       	ldi	r24, 0x22	; 34
+ 5fa:	0e 94 73 01 	call	0x2e6	; 0x2e6 <_Z12TransmitUARTh>
+ 5fe:	90 e1       	ldi	r25, 0x10	; 16
+ 600:	9a 95       	dec	r25
+ 602:	f1 f7       	brne	.-4      	; 0x600 <_Z16dispatch_producth+0x34>
+ 604:	00 c0       	rjmp	.+0      	; 0x606 <_Z16dispatch_producth+0x3a>
+		_delay_us(50);
+		TransmitUART(product_2);
+ 606:	82 e2       	ldi	r24, 0x22	; 34
+ 608:	0e 94 73 01 	call	0x2e6	; 0x2e6 <_Z12TransmitUARTh>
+		
+		dispatch_motor2();
+ 60c:	0e 94 63 00 	call	0xc6	; 0xc6 <_Z15dispatch_motor2v>
+		start_PWM_motor2();
+ 610:	0e 94 6e 00 	call	0xdc	; 0xdc <_Z16start_PWM_motor2v>
+		product = 2;
+ 614:	82 e0       	ldi	r24, 0x02	; 2
+ 616:	80 93 c3 01 	sts	0x01C3, r24
+ 61a:	08 95       	ret
+	}
+	else
+	if (product_no == 3)
+ 61c:	83 30       	cpi	r24, 0x03	; 3
+ 61e:	a1 f4       	brne	.+40     	; 0x648 <_Z16dispatch_producth+0x7c>
+	{
+		hang_on_please_dispatching();
+ 620:	0e 94 cb 02 	call	0x596	; 0x596 <_Z26hang_on_please_dispatchingv>
+		
+		TransmitUART(product_3);//dispatch product 3
+ 624:	83 e3       	ldi	r24, 0x33	; 51
+ 626:	0e 94 73 01 	call	0x2e6	; 0x2e6 <_Z12TransmitUARTh>
+ 62a:	80 e1       	ldi	r24, 0x10	; 16
+ 62c:	8a 95       	dec	r24
+ 62e:	f1 f7       	brne	.-4      	; 0x62c <_Z16dispatch_producth+0x60>
+ 630:	00 c0       	rjmp	.+0      	; 0x632 <_Z16dispatch_producth+0x66>
+		_delay_us(50);
+		TransmitUART(product_3);
+ 632:	83 e3       	ldi	r24, 0x33	; 51
+ 634:	0e 94 73 01 	call	0x2e6	; 0x2e6 <_Z12TransmitUARTh>
+		
+		dispatch_motor3();
+ 638:	0e 94 88 00 	call	0x110	; 0x110 <_Z15dispatch_motor3v>
+		start_PWM_motor3();
+ 63c:	0e 94 93 00 	call	0x126	; 0x126 <_Z16start_PWM_motor3v>
+		product = 3;
+ 640:	83 e0       	ldi	r24, 0x03	; 3
+ 642:	80 93 c3 01 	sts	0x01C3, r24
+ 646:	08 95       	ret
+	}
+	else
+	if (product_no == 4)
+ 648:	84 30       	cpi	r24, 0x04	; 4
+ 64a:	41 f5       	brne	.+80     	; 0x69c <_Z16dispatch_producth+0xd0>
+ 64c:	90 e1       	ldi	r25, 0x10	; 16
+ 64e:	9a 95       	dec	r25
+ 650:	f1 f7       	brne	.-4      	; 0x64e <_Z16dispatch_producth+0x82>
+ 652:	00 c0       	rjmp	.+0      	; 0x654 <_Z16dispatch_producth+0x88>
+	{
+		_delay_us(50);
+		clear_LCD_display();
+ 654:	0e 94 c1 01 	call	0x382	; 0x382 <_Z17clear_LCD_displayv>
+		LCDs_top_line();
+ 658:	0e 94 e5 01 	call	0x3ca	; 0x3ca <_Z13LCDs_top_linev>
+		Send_A_String(" NOW THE COIN");
+ 65c:	8c ef       	ldi	r24, 0xFC	; 252
+ 65e:	90 e0       	ldi	r25, 0x00	; 0
+ 660:	0e 94 ac 01 	call	0x358	; 0x358 <_Z13Send_A_StringPc>
+ 664:	00 c0       	rjmp	.+0      	; 0x666 <_Z16dispatch_producth+0x9a>
+ 666:	00 c0       	rjmp	.+0      	; 0x668 <_Z16dispatch_producth+0x9c>
+ 668:	00 00       	nop
+		
+		_delay_us(5);
+		
+		LCDs_bottom_line();
+ 66a:	0e 94 ed 01 	call	0x3da	; 0x3da <_Z16LCDs_bottom_linev>
+		Send_A_String("WILL BE RETURNED");
+ 66e:	8a e0       	ldi	r24, 0x0A	; 10
+ 670:	91 e0       	ldi	r25, 0x01	; 1
+ 672:	0e 94 ac 01 	call	0x358	; 0x358 <_Z13Send_A_StringPc>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 676:	83 ed       	ldi	r24, 0xD3	; 211
+ 678:	90 e3       	ldi	r25, 0x30	; 48
+ 67a:	01 97       	sbiw	r24, 0x01	; 1
+ 67c:	f1 f7       	brne	.-4      	; 0x67a <_Z16dispatch_producth+0xae>
+ 67e:	00 c0       	rjmp	.+0      	; 0x680 <_Z16dispatch_producth+0xb4>
+ 680:	00 00       	nop
+		_delay_ms(50);
+		
+		TransmitUART(product_4);
+ 682:	84 e4       	ldi	r24, 0x44	; 68
+ 684:	0e 94 73 01 	call	0x2e6	; 0x2e6 <_Z12TransmitUARTh>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 688:	90 e1       	ldi	r25, 0x10	; 16
+ 68a:	9a 95       	dec	r25
+ 68c:	f1 f7       	brne	.-4      	; 0x68a <_Z16dispatch_producth+0xbe>
+ 68e:	00 c0       	rjmp	.+0      	; 0x690 <_Z16dispatch_producth+0xc4>
+		_delay_us(50);
+		TransmitUART(product_4);
+ 690:	84 e4       	ldi	r24, 0x44	; 68
+ 692:	0e 94 73 01 	call	0x2e6	; 0x2e6 <_Z12TransmitUARTh>
+		product = 4;	
+ 696:	84 e0       	ldi	r24, 0x04	; 4
+ 698:	80 93 c3 01 	sts	0x01C3, r24
+ 69c:	08 95       	ret
+
+0000069e <_Z14select_productv>:
+///////////////////
+void select_product(void)
+{
+	while(8)
+	{
+		if( (bit_is_set(PINC,0)) && (bit_is_set(PINC,1) && (bit_is_set(PINC,2)) && (bit_is_set(PINC,3))) )
+ 69e:	98 9b       	sbis	0x13, 0	; 19
+ 6a0:	fe cf       	rjmp	.-4      	; 0x69e <_Z14select_productv>
+ 6a2:	99 9b       	sbis	0x13, 1	; 19
+ 6a4:	fc cf       	rjmp	.-8      	; 0x69e <_Z14select_productv>
+ 6a6:	9a 9b       	sbis	0x13, 2	; 19
+ 6a8:	fa cf       	rjmp	.-12     	; 0x69e <_Z14select_productv>
+ 6aa:	9b 9b       	sbis	0x13, 3	; 19
+ 6ac:	f8 cf       	rjmp	.-16     	; 0x69e <_Z14select_productv>
+		{
+			pressed = 0;
+ 6ae:	10 92 c4 01 	sts	0x01C4, r1
+		}
+	}
+	
+	while(3)
+	{
+		if (bit_is_clear(PINC,0))
+ 6b2:	83 b3       	in	r24, 0x13	; 19
+ 6b4:	80 fd       	sbrc	r24, 0
+ 6b6:	1c c0       	rjmp	.+56     	; 0x6f0 <_Z14select_productv+0x52>
+		{
+			debounce();
+			if (pressed == 0)
+			{
+				pressed = 1;
+ 6b8:	81 e0       	ldi	r24, 0x01	; 1
+ 6ba:	80 93 c4 01 	sts	0x01C4, r24
+				
+				if (product_1_EMPTY == 0)
+ 6be:	80 91 bf 01 	lds	r24, 0x01BF
+ 6c2:	88 23       	and	r24, r24
+ 6c4:	21 f4       	brne	.+8      	; 0x6ce <_Z14select_productv+0x30>
+				{
+					dispatch_product(1);  //dispatch product 1
+ 6c6:	81 e0       	ldi	r24, 0x01	; 1
+ 6c8:	0e 94 e6 02 	call	0x5cc	; 0x5cc <_Z16dispatch_producth>
+ 6cc:	08 95       	ret
+				}
+				else
+				if (product_1_EMPTY == 1)
+ 6ce:	81 30       	cpi	r24, 0x01	; 1
+ 6d0:	09 f0       	breq	.+2      	; 0x6d4 <_Z14select_productv+0x36>
+ 6d2:	57 c0       	rjmp	.+174    	; 0x782 <_Z14select_productv+0xe4>
+				{
+					if (allow_refund == 0)
+ 6d4:	80 91 bc 01 	lds	r24, 0x01BC
+ 6d8:	88 23       	and	r24, r24
+ 6da:	19 f4       	brne	.+6      	; 0x6e2 <_Z14select_productv+0x44>
+					{
+						allow_refund_policy();
+ 6dc:	0e 94 c2 03 	call	0x784	; 0x784 <_Z19allow_refund_policyv>
+ 6e0:	08 95       	ret
+					}
+					else
+					if (allow_refund == 1)
+ 6e2:	81 30       	cpi	r24, 0x01	; 1
+ 6e4:	09 f0       	breq	.+2      	; 0x6e8 <_Z14select_productv+0x4a>
+ 6e6:	4d c0       	rjmp	.+154    	; 0x782 <_Z14select_productv+0xe4>
+					{
+						dispatch_product(4); //return coin
+ 6e8:	84 e0       	ldi	r24, 0x04	; 4
+ 6ea:	0e 94 e6 02 	call	0x5cc	; 0x5cc <_Z16dispatch_producth>
+ 6ee:	08 95       	ret
+				
+				break;
+			}
+		}
+		else
+		if (bit_is_clear(PINC,1))
+ 6f0:	99 99       	sbic	0x13, 1	; 19
+ 6f2:	1a c0       	rjmp	.+52     	; 0x728 <_Z14select_productv+0x8a>
+		{
+			debounce();
+			if (pressed == 0)
+			{
+				pressed = 1;
+ 6f4:	81 e0       	ldi	r24, 0x01	; 1
+ 6f6:	80 93 c4 01 	sts	0x01C4, r24
+				
+				if (product_2_EMPTY == 0)
+ 6fa:	80 91 be 01 	lds	r24, 0x01BE
+ 6fe:	88 23       	and	r24, r24
+ 700:	21 f4       	brne	.+8      	; 0x70a <_Z14select_productv+0x6c>
+				{
+					dispatch_product(2);
+ 702:	82 e0       	ldi	r24, 0x02	; 2
+ 704:	0e 94 e6 02 	call	0x5cc	; 0x5cc <_Z16dispatch_producth>
+ 708:	08 95       	ret
+				}
+				else
+				if (product_2_EMPTY == 1)
+ 70a:	81 30       	cpi	r24, 0x01	; 1
+ 70c:	d1 f5       	brne	.+116    	; 0x782 <_Z14select_productv+0xe4>
+				{
+					if (allow_refund == 0)
+ 70e:	80 91 bc 01 	lds	r24, 0x01BC
+ 712:	88 23       	and	r24, r24
+ 714:	19 f4       	brne	.+6      	; 0x71c <_Z14select_productv+0x7e>
+					{
+						allow_refund_policy();
+ 716:	0e 94 c2 03 	call	0x784	; 0x784 <_Z19allow_refund_policyv>
+ 71a:	08 95       	ret
+					}
+					else
+					if (allow_refund == 1)
+ 71c:	81 30       	cpi	r24, 0x01	; 1
+ 71e:	89 f5       	brne	.+98     	; 0x782 <_Z14select_productv+0xe4>
+					{
+						dispatch_product(4);  //return coin
+ 720:	84 e0       	ldi	r24, 0x04	; 4
+ 722:	0e 94 e6 02 	call	0x5cc	; 0x5cc <_Z16dispatch_producth>
+ 726:	08 95       	ret
+				
+				break;
+			}
+		}
+		else
+		if (bit_is_clear(PINC,2))
+ 728:	9a 99       	sbic	0x13, 2	; 19
+ 72a:	1a c0       	rjmp	.+52     	; 0x760 <_Z14select_productv+0xc2>
+		{
+			debounce();
+			if (pressed == 0)
+			{
+				pressed = 1;
+ 72c:	81 e0       	ldi	r24, 0x01	; 1
+ 72e:	80 93 c4 01 	sts	0x01C4, r24
+				
+				if (product_3_EMPTY == 0)
+ 732:	80 91 bd 01 	lds	r24, 0x01BD
+ 736:	88 23       	and	r24, r24
+ 738:	21 f4       	brne	.+8      	; 0x742 <_Z14select_productv+0xa4>
+				{
+					dispatch_product(3);
+ 73a:	83 e0       	ldi	r24, 0x03	; 3
+ 73c:	0e 94 e6 02 	call	0x5cc	; 0x5cc <_Z16dispatch_producth>
+ 740:	08 95       	ret
+				}
+				else
+				if (product_3_EMPTY == 1)
+ 742:	81 30       	cpi	r24, 0x01	; 1
+ 744:	f1 f4       	brne	.+60     	; 0x782 <_Z14select_productv+0xe4>
+				{
+					if (allow_refund == 0)
+ 746:	80 91 bc 01 	lds	r24, 0x01BC
+ 74a:	88 23       	and	r24, r24
+ 74c:	19 f4       	brne	.+6      	; 0x754 <_Z14select_productv+0xb6>
+					{
+						allow_refund_policy();
+ 74e:	0e 94 c2 03 	call	0x784	; 0x784 <_Z19allow_refund_policyv>
+ 752:	08 95       	ret
+					}
+					else
+					if (allow_refund == 1)
+ 754:	81 30       	cpi	r24, 0x01	; 1
+ 756:	a9 f4       	brne	.+42     	; 0x782 <_Z14select_productv+0xe4>
+					{
+						dispatch_product(4);
+ 758:	84 e0       	ldi	r24, 0x04	; 4
+ 75a:	0e 94 e6 02 	call	0x5cc	; 0x5cc <_Z16dispatch_producth>
+ 75e:	08 95       	ret
+				
+				break;
+			}
+		}
+		else
+		if (bit_is_clear(PINC,3))//RETURN COIN
+ 760:	9b 99       	sbic	0x13, 3	; 19
+ 762:	a7 cf       	rjmp	.-178    	; 0x6b2 <_Z14select_productv+0x14>
+		{
+			debounce();
+			if (pressed == 0)
+			{
+				pressed = 1;
+ 764:	81 e0       	ldi	r24, 0x01	; 1
+ 766:	80 93 c4 01 	sts	0x01C4, r24
+				
+				if (allow_refund == 1)
+ 76a:	80 91 bc 01 	lds	r24, 0x01BC
+ 76e:	81 30       	cpi	r24, 0x01	; 1
+ 770:	21 f4       	brne	.+8      	; 0x77a <_Z14select_productv+0xdc>
+				{
+					dispatch_product(4);//return coin
+ 772:	84 e0       	ldi	r24, 0x04	; 4
+ 774:	0e 94 e6 02 	call	0x5cc	; 0x5cc <_Z16dispatch_producth>
+ 778:	08 95       	ret
+				}
+				else
+				if (allow_refund == 0)
+ 77a:	88 23       	and	r24, r24
+ 77c:	11 f4       	brne	.+4      	; 0x782 <_Z14select_productv+0xe4>
+				{
+					select_product();
+ 77e:	0e 94 4f 03 	call	0x69e	; 0x69e <_Z14select_productv>
+ 782:	08 95       	ret
+
+00000784 <_Z19allow_refund_policyv>:
+		product_3_EMPTY = 0;
+	}
+}
+void allow_refund_policy(void)
+{
+	if (allow_refund == 0)
+ 784:	80 91 bc 01 	lds	r24, 0x01BC
+ 788:	88 23       	and	r24, r24
+ 78a:	19 f4       	brne	.+6      	; 0x792 <_Z19allow_refund_policyv+0xe>
+	{
+		allow_refund = 1;
+ 78c:	81 e0       	ldi	r24, 0x01	; 1
+ 78e:	80 93 bc 01 	sts	0x01BC, r24
+ 792:	80 e1       	ldi	r24, 0x10	; 16
+ 794:	8a 95       	dec	r24
+ 796:	f1 f7       	brne	.-4      	; 0x794 <_Z19allow_refund_policyv+0x10>
+ 798:	00 c0       	rjmp	.+0      	; 0x79a <_Z19allow_refund_policyv+0x16>
+	}
+	
+	_delay_us(50);
+	clear_LCD_display();
+ 79a:	0e 94 c1 01 	call	0x382	; 0x382 <_Z17clear_LCD_displayv>
+	LCDs_top_line();
+ 79e:	0e 94 e5 01 	call	0x3ca	; 0x3ca <_Z13LCDs_top_linev>
+	Send_A_String(" SORRY BRO !!");
+ 7a2:	8b e1       	ldi	r24, 0x1B	; 27
+ 7a4:	91 e0       	ldi	r25, 0x01	; 1
+ 7a6:	0e 94 ac 01 	call	0x358	; 0x358 <_Z13Send_A_StringPc>
+ 7aa:	00 c0       	rjmp	.+0      	; 0x7ac <_Z19allow_refund_policyv+0x28>
+ 7ac:	00 c0       	rjmp	.+0      	; 0x7ae <_Z19allow_refund_policyv+0x2a>
+ 7ae:	00 00       	nop
+	
+	_delay_us(5);
+	
+	LCDs_bottom_line();
+ 7b0:	0e 94 ed 01 	call	0x3da	; 0x3da <_Z16LCDs_bottom_linev>
+	Send_A_String("OUT OF STOCK");
+ 7b4:	89 e2       	ldi	r24, 0x29	; 41
+ 7b6:	91 e0       	ldi	r25, 0x01	; 1
+ 7b8:	0e 94 ac 01 	call	0x358	; 0x358 <_Z13Send_A_StringPc>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 7bc:	a3 ed       	ldi	r26, 0xD3	; 211
+ 7be:	b0 e3       	ldi	r27, 0x30	; 48
+ 7c0:	11 97       	sbiw	r26, 0x01	; 1
+ 7c2:	f1 f7       	brne	.-4      	; 0x7c0 <_Z19allow_refund_policyv+0x3c>
+ 7c4:	00 c0       	rjmp	.+0      	; 0x7c6 <_Z19allow_refund_policyv+0x42>
+ 7c6:	00 00       	nop
+ 7c8:	8f e7       	ldi	r24, 0x7F	; 127
+ 7ca:	99 ea       	ldi	r25, 0xA9	; 169
+ 7cc:	a3 e0       	ldi	r26, 0x03	; 3
+ 7ce:	81 50       	subi	r24, 0x01	; 1
+ 7d0:	90 40       	sbci	r25, 0x00	; 0
+ 7d2:	a0 40       	sbci	r26, 0x00	; 0
+ 7d4:	e1 f7       	brne	.-8      	; 0x7ce <_Z19allow_refund_policyv+0x4a>
+ 7d6:	00 c0       	rjmp	.+0      	; 0x7d8 <_Z19allow_refund_policyv+0x54>
+ 7d8:	00 00       	nop
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 7da:	90 e1       	ldi	r25, 0x10	; 16
+ 7dc:	9a 95       	dec	r25
+ 7de:	f1 f7       	brne	.-4      	; 0x7dc <_Z19allow_refund_policyv+0x58>
+ 7e0:	00 c0       	rjmp	.+0      	; 0x7e2 <_Z19allow_refund_policyv+0x5e>
+	_delay_ms(50);
+	
+	_delay_ms(1200);
+	
+	_delay_us(50);
+	clear_LCD_display();
+ 7e2:	0e 94 c1 01 	call	0x382	; 0x382 <_Z17clear_LCD_displayv>
+	LCDs_top_line();
+ 7e6:	0e 94 e5 01 	call	0x3ca	; 0x3ca <_Z13LCDs_top_linev>
+	Send_A_String("push RETURN COIN");
+ 7ea:	86 e3       	ldi	r24, 0x36	; 54
+ 7ec:	91 e0       	ldi	r25, 0x01	; 1
+ 7ee:	0e 94 ac 01 	call	0x358	; 0x358 <_Z13Send_A_StringPc>
+ 7f2:	00 c0       	rjmp	.+0      	; 0x7f4 <_Z19allow_refund_policyv+0x70>
+ 7f4:	00 c0       	rjmp	.+0      	; 0x7f6 <_Z19allow_refund_policyv+0x72>
+ 7f6:	00 00       	nop
+	
+	_delay_us(5);
+	
+	LCDs_bottom_line();
+ 7f8:	0e 94 ed 01 	call	0x3da	; 0x3da <_Z16LCDs_bottom_linev>
+	Send_A_String("OR BUY ANOTHER 1");
+ 7fc:	87 e4       	ldi	r24, 0x47	; 71
+ 7fe:	91 e0       	ldi	r25, 0x01	; 1
+ 800:	0e 94 ac 01 	call	0x358	; 0x358 <_Z13Send_A_StringPc>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 804:	a3 ed       	ldi	r26, 0xD3	; 211
+ 806:	b0 e3       	ldi	r27, 0x30	; 48
+ 808:	11 97       	sbiw	r26, 0x01	; 1
+ 80a:	f1 f7       	brne	.-4      	; 0x808 <_Z19allow_refund_policyv+0x84>
+ 80c:	00 c0       	rjmp	.+0      	; 0x80e <_Z19allow_refund_policyv+0x8a>
+ 80e:	00 00       	nop
+	_delay_ms(50);
+	
+	PORTC |= (1<<PINC4);
+ 810:	ac 9a       	sbi	0x15, 4	; 21
+	
+	select_product();
+ 812:	0e 94 4f 03 	call	0x69e	; 0x69e <_Z14select_productv>
+}
+ 816:	08 95       	ret
+
+00000818 <_Z10initializev>:
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 818:	00 c0       	rjmp	.+0      	; 0x81a <_Z10initializev+0x2>
+ 81a:	00 c0       	rjmp	.+0      	; 0x81c <_Z10initializev+0x4>
+ 81c:	00 00       	nop
+	_delay_ms(50);
+}
+void initialize(void)
+{
+	_delay_us(5);
+	clear_LCD_display();
+ 81e:	0e 94 c1 01 	call	0x382	; 0x382 <_Z17clear_LCD_displayv>
+	LCDs_top_line();
+ 822:	0e 94 e5 01 	call	0x3ca	; 0x3ca <_Z13LCDs_top_linev>
+	Send_A_String(" AUSTIN MACHINES ");
+ 826:	88 e5       	ldi	r24, 0x58	; 88
+ 828:	91 e0       	ldi	r25, 0x01	; 1
+ 82a:	0e 94 ac 01 	call	0x358	; 0x358 <_Z13Send_A_StringPc>
+ 82e:	00 c0       	rjmp	.+0      	; 0x830 <_Z10initializev+0x18>
+ 830:	00 c0       	rjmp	.+0      	; 0x832 <_Z10initializev+0x1a>
+ 832:	00 00       	nop
+	
+	_delay_us(5);
+	
+	LCDs_bottom_line();
+ 834:	0e 94 ed 01 	call	0x3da	; 0x3da <_Z16LCDs_bottom_linev>
+	Send_A_String("TECHNOLOGY AHEAD");
+ 838:	8a e6       	ldi	r24, 0x6A	; 106
+ 83a:	91 e0       	ldi	r25, 0x01	; 1
+ 83c:	0e 94 ac 01 	call	0x358	; 0x358 <_Z13Send_A_StringPc>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 840:	8f e7       	ldi	r24, 0x7F	; 127
+ 842:	99 ea       	ldi	r25, 0xA9	; 169
+ 844:	a3 e0       	ldi	r26, 0x03	; 3
+ 846:	81 50       	subi	r24, 0x01	; 1
+ 848:	90 40       	sbci	r25, 0x00	; 0
+ 84a:	a0 40       	sbci	r26, 0x00	; 0
+ 84c:	e1 f7       	brne	.-8      	; 0x846 <_Z10initializev+0x2e>
+ 84e:	00 c0       	rjmp	.+0      	; 0x850 <_Z10initializev+0x38>
+ 850:	00 00       	nop
+	
+	_delay_ms(1200);
+	
+	clear_LCD_display();
+ 852:	0e 94 c1 01 	call	0x382	; 0x382 <_Z17clear_LCD_displayv>
+	LCDs_top_line();
+ 856:	0e 94 e5 01 	call	0x3ca	; 0x3ca <_Z13LCDs_top_linev>
+	Send_A_String("Insert 10 RUPEES");
+ 85a:	8b e7       	ldi	r24, 0x7B	; 123
+ 85c:	91 e0       	ldi	r25, 0x01	; 1
+ 85e:	0e 94 ac 01 	call	0x358	; 0x358 <_Z13Send_A_StringPc>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 862:	00 c0       	rjmp	.+0      	; 0x864 <_Z10initializev+0x4c>
+ 864:	00 c0       	rjmp	.+0      	; 0x866 <_Z10initializev+0x4e>
+ 866:	00 00       	nop
+	
+	_delay_us(5);
+	LCDs_bottom_line();
+ 868:	0e 94 ed 01 	call	0x3da	; 0x3da <_Z16LCDs_bottom_linev>
+	Send_A_String("coin to purchase");
+ 86c:	8c e8       	ldi	r24, 0x8C	; 140
+ 86e:	91 e0       	ldi	r25, 0x01	; 1
+ 870:	0e 94 ac 01 	call	0x358	; 0x358 <_Z13Send_A_StringPc>
+ 874:	00 c0       	rjmp	.+0      	; 0x876 <_Z10initializev+0x5e>
+ 876:	00 c0       	rjmp	.+0      	; 0x878 <_Z10initializev+0x60>
+ 878:	00 00       	nop
+	_delay_us(5);
+}
+ 87a:	08 95       	ret
+
+0000087c <main>:
+uint8_t product_3_EMPTY = 0;
+uint8_t allow_refund = 0;
+
+int main(void)
+{		
+	initialise_GPIO_services();
+ 87c:	0e 94 49 00 	call	0x92	; 0x92 <_Z24initialise_GPIO_servicesv>
+	initialise_LCD_interface();
+ 880:	0e 94 cb 01 	call	0x396	; 0x396 <_Z24initialise_LCD_interfacev>
+	initialize_PWM_mode();
+ 884:	0e 94 56 00 	call	0xac	; 0xac <_Z19initialize_PWM_modev>
+	UART_enable();
+ 888:	0e 94 54 01 	call	0x2a8	; 0x2a8 <_Z11UART_enablev>
+	
+	sei();
+ 88c:	78 94       	sei
+				dataRecieved = 0;
+				
+				_delay_us(5);
+				clear_LCD_display();
+				LCDs_top_line();
+				Send_A_String("COIN ACCEPTED");
+ 88e:	cd e9       	ldi	r28, 0x9D	; 157
+ 890:	d1 e0       	ldi	r29, 0x01	; 1
+				
+				_delay_us(5);
+				
+				LCDs_bottom_line();
+				Send_A_String(" SELECT PRODUCT");
+ 892:	0b ea       	ldi	r16, 0xAB	; 171
+ 894:	11 e0       	ldi	r17, 0x01	; 1
+	
+	sei();
+	
+	while(1)
+	{
+		allow_refund = 0;			
+ 896:	10 92 bc 01 	sts	0x01BC, r1
+		stock_checklist();
+ 89a:	0e 94 a5 00 	call	0x14a	; 0x14a <_Z15stock_checklistv>
+		initialize();
+ 89e:	0e 94 0c 04 	call	0x818	; 0x818 <_Z10initializev>
+		
+		while(2)
+		{
+			RecieveUART();
+ 8a2:	0e 94 6d 01 	call	0x2da	; 0x2da <_Z11RecieveUARTv>
+			
+			RecieveUART();
+ 8a6:	0e 94 6d 01 	call	0x2da	; 0x2da <_Z11RecieveUARTv>
+			
+			if (dataRecieved == coin_accepted)
+ 8aa:	80 91 c2 01 	lds	r24, 0x01C2
+ 8ae:	8a 3c       	cpi	r24, 0xCA	; 202
+ 8b0:	09 f5       	brne	.+66     	; 0x8f4 <main+0x78>
+			{
+				dataRecieved = 0;
+ 8b2:	10 92 c2 01 	sts	0x01C2, r1
+ 8b6:	00 c0       	rjmp	.+0      	; 0x8b8 <main+0x3c>
+ 8b8:	00 c0       	rjmp	.+0      	; 0x8ba <main+0x3e>
+ 8ba:	00 00       	nop
+				
+				_delay_us(5);
+				clear_LCD_display();
+ 8bc:	0e 94 c1 01 	call	0x382	; 0x382 <_Z17clear_LCD_displayv>
+				LCDs_top_line();
+ 8c0:	0e 94 e5 01 	call	0x3ca	; 0x3ca <_Z13LCDs_top_linev>
+				Send_A_String("COIN ACCEPTED");
+ 8c4:	ce 01       	movw	r24, r28
+ 8c6:	0e 94 ac 01 	call	0x358	; 0x358 <_Z13Send_A_StringPc>
+ 8ca:	00 c0       	rjmp	.+0      	; 0x8cc <main+0x50>
+ 8cc:	00 c0       	rjmp	.+0      	; 0x8ce <main+0x52>
+ 8ce:	00 00       	nop
+				
+				_delay_us(5);
+				
+				LCDs_bottom_line();
+ 8d0:	0e 94 ed 01 	call	0x3da	; 0x3da <_Z16LCDs_bottom_linev>
+				Send_A_String(" SELECT PRODUCT");
+ 8d4:	c8 01       	movw	r24, r16
+ 8d6:	0e 94 ac 01 	call	0x358	; 0x358 <_Z13Send_A_StringPc>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 8da:	83 ed       	ldi	r24, 0xD3	; 211
+ 8dc:	90 e3       	ldi	r25, 0x30	; 48
+ 8de:	01 97       	sbiw	r24, 0x01	; 1
+ 8e0:	f1 f7       	brne	.-4      	; 0x8de <main+0x62>
+ 8e2:	00 c0       	rjmp	.+0      	; 0x8e4 <main+0x68>
+ 8e4:	00 00       	nop
+				_delay_ms(50);
+				
+				select_product();
+ 8e6:	0e 94 4f 03 	call	0x69e	; 0x69e <_Z14select_productv>
+				check_for_dispatch_completion();
+ 8ea:	0e 94 a3 02 	call	0x546	; 0x546 <_Z29check_for_dispatch_completionv>
+				publish_results();
+ 8ee:	0e 94 f5 01 	call	0x3ea	; 0x3ea <_Z15publish_resultsv>
+	initialize_PWM_mode();
+	UART_enable();
+	
+	sei();
+	
+	while(1)
+ 8f2:	d1 cf       	rjmp	.-94     	; 0x896 <main+0x1a>
+				check_for_dispatch_completion();
+				publish_results();
+				
+				break;
+			}
+			reset();			
+ 8f4:	0e 94 30 01 	call	0x260	; 0x260 <_Z5resetv>
+	{
+		allow_refund = 0;			
+		stock_checklist();
+		initialize();
+		
+		while(2)
+ 8f8:	d4 cf       	rjmp	.-88     	; 0x8a2 <main+0x26>
+
+000008fa <__vector_9>:
+	Send_A_String("coin to purchase");
+	_delay_us(5);
+}
+//////////////////
+ISR(TIMER0_OVF_vect)
+{
+ 8fa:	1f 92       	push	r1
+ 8fc:	0f 92       	push	r0
+ 8fe:	0f b6       	in	r0, 0x3f	; 63
+ 900:	0f 92       	push	r0
+ 902:	11 24       	eor	r1, r1
+ 904:	8f 93       	push	r24
+ 906:	9f 93       	push	r25
+	count++;
+ 908:	80 91 c9 01 	lds	r24, 0x01C9
+ 90c:	90 91 ca 01 	lds	r25, 0x01CA
+ 910:	01 96       	adiw	r24, 0x01	; 1
+ 912:	90 93 ca 01 	sts	0x01CA, r25
+ 916:	80 93 c9 01 	sts	0x01C9, r24
+	if (count==61)
+ 91a:	80 91 c9 01 	lds	r24, 0x01C9
+ 91e:	90 91 ca 01 	lds	r25, 0x01CA
+ 922:	8d 33       	cpi	r24, 0x3D	; 61
+ 924:	91 05       	cpc	r25, r1
+ 926:	31 f5       	brne	.+76     	; 0x974 <__vector_9+0x7a>
+	{
+		// 1 second has elapsed
+		count=0;
+ 928:	10 92 ca 01 	sts	0x01CA, r1
+ 92c:	10 92 c9 01 	sts	0x01C9, r1
+		count1++;
+ 930:	80 91 c7 01 	lds	r24, 0x01C7
+ 934:	90 91 c8 01 	lds	r25, 0x01C8
+ 938:	01 96       	adiw	r24, 0x01	; 1
+ 93a:	90 93 c8 01 	sts	0x01C8, r25
+ 93e:	80 93 c7 01 	sts	0x01C7, r24
+		if (count1==10)
+ 942:	80 91 c7 01 	lds	r24, 0x01C7
+ 946:	90 91 c8 01 	lds	r25, 0x01C8
+ 94a:	8a 30       	cpi	r24, 0x0A	; 10
+ 94c:	91 05       	cpc	r25, r1
+ 94e:	21 f4       	brne	.+8      	; 0x958 <__vector_9+0x5e>
+		{
+			mini_FAIL=1;
+ 950:	81 e0       	ldi	r24, 0x01	; 1
+ 952:	80 93 c6 01 	sts	0x01C6, r24
+ 956:	0e c0       	rjmp	.+28     	; 0x974 <__vector_9+0x7a>
+		}
+				
+		else
+		if (count1==20)/////// calibrate it further
+ 958:	80 91 c7 01 	lds	r24, 0x01C7
+ 95c:	90 91 c8 01 	lds	r25, 0x01C8
+ 960:	84 31       	cpi	r24, 0x14	; 20
+ 962:	91 05       	cpc	r25, r1
+ 964:	39 f4       	brne	.+14     	; 0x974 <__vector_9+0x7a>
+		{
+			//return coin if not dispatched
+			count1=0;
+ 966:	10 92 c8 01 	sts	0x01C8, r1
+ 96a:	10 92 c7 01 	sts	0x01C7, r1
+			FAIL=1;
+ 96e:	81 e0       	ldi	r24, 0x01	; 1
+ 970:	80 93 c5 01 	sts	0x01C5, r24
+		}
+	}
+}
+ 974:	9f 91       	pop	r25
+ 976:	8f 91       	pop	r24
+ 978:	0f 90       	pop	r0
+ 97a:	0f be       	out	0x3f, r0	; 63
+ 97c:	0f 90       	pop	r0
+ 97e:	1f 90       	pop	r1
+ 980:	18 95       	reti
+
+00000982 <lrint>:
+ 982:	41 d0       	rcall	.+130    	; 0xa06 <__fp_splitA>
+ 984:	a8 f1       	brcs	.+106    	; 0x9f0 <lrint+0x6e>
+ 986:	9e 57       	subi	r25, 0x7E	; 126
+ 988:	a8 f1       	brcs	.+106    	; 0x9f4 <lrint+0x72>
+ 98a:	98 51       	subi	r25, 0x18	; 24
+ 98c:	60 f0       	brcs	.+24     	; 0x9a6 <lrint+0x24>
+ 98e:	39 f1       	breq	.+78     	; 0x9de <lrint+0x5c>
+ 990:	98 30       	cpi	r25, 0x08	; 8
+ 992:	70 f5       	brcc	.+92     	; 0x9f0 <lrint+0x6e>
+ 994:	09 2e       	mov	r0, r25
+ 996:	99 27       	eor	r25, r25
+ 998:	66 0f       	add	r22, r22
+ 99a:	77 1f       	adc	r23, r23
+ 99c:	88 1f       	adc	r24, r24
+ 99e:	99 1f       	adc	r25, r25
+ 9a0:	0a 94       	dec	r0
+ 9a2:	d1 f7       	brne	.-12     	; 0x998 <lrint+0x16>
+ 9a4:	1c c0       	rjmp	.+56     	; 0x9de <lrint+0x5c>
+ 9a6:	bb 27       	eor	r27, r27
+ 9a8:	99 3f       	cpi	r25, 0xF9	; 249
+ 9aa:	4c f4       	brge	.+18     	; 0x9be <lrint+0x3c>
+ 9ac:	b1 11       	cpse	r27, r1
+ 9ae:	b1 e0       	ldi	r27, 0x01	; 1
+ 9b0:	b6 2b       	or	r27, r22
+ 9b2:	67 2f       	mov	r22, r23
+ 9b4:	78 2f       	mov	r23, r24
+ 9b6:	88 27       	eor	r24, r24
+ 9b8:	98 5f       	subi	r25, 0xF8	; 248
+ 9ba:	b1 f7       	brne	.-20     	; 0x9a8 <lrint+0x26>
+ 9bc:	08 c0       	rjmp	.+16     	; 0x9ce <lrint+0x4c>
+ 9be:	86 95       	lsr	r24
+ 9c0:	77 95       	ror	r23
+ 9c2:	67 95       	ror	r22
+ 9c4:	b7 95       	ror	r27
+ 9c6:	08 f4       	brcc	.+2      	; 0x9ca <lrint+0x48>
+ 9c8:	b1 60       	ori	r27, 0x01	; 1
+ 9ca:	93 95       	inc	r25
+ 9cc:	c1 f7       	brne	.-16     	; 0x9be <lrint+0x3c>
+ 9ce:	bb 0f       	add	r27, r27
+ 9d0:	30 f4       	brcc	.+12     	; 0x9de <lrint+0x5c>
+ 9d2:	11 f4       	brne	.+4      	; 0x9d8 <lrint+0x56>
+ 9d4:	60 ff       	sbrs	r22, 0
+ 9d6:	03 c0       	rjmp	.+6      	; 0x9de <lrint+0x5c>
+ 9d8:	6f 5f       	subi	r22, 0xFF	; 255
+ 9da:	7f 4f       	sbci	r23, 0xFF	; 255
+ 9dc:	8f 4f       	sbci	r24, 0xFF	; 255
+ 9de:	3e f4       	brtc	.+14     	; 0x9ee <lrint+0x6c>
+ 9e0:	90 95       	com	r25
+ 9e2:	80 95       	com	r24
+ 9e4:	70 95       	com	r23
+ 9e6:	61 95       	neg	r22
+ 9e8:	7f 4f       	sbci	r23, 0xFF	; 255
+ 9ea:	8f 4f       	sbci	r24, 0xFF	; 255
+ 9ec:	9f 4f       	sbci	r25, 0xFF	; 255
+ 9ee:	08 95       	ret
+ 9f0:	68 94       	set
+ 9f2:	24 c0       	rjmp	.+72     	; 0xa3c <__fp_szero>
+ 9f4:	22 c0       	rjmp	.+68     	; 0xa3a <__fp_zero>
+
+000009f6 <__fp_split3>:
+ 9f6:	57 fd       	sbrc	r21, 7
+ 9f8:	90 58       	subi	r25, 0x80	; 128
+ 9fa:	44 0f       	add	r20, r20
+ 9fc:	55 1f       	adc	r21, r21
+ 9fe:	59 f0       	breq	.+22     	; 0xa16 <__fp_splitA+0x10>
+ a00:	5f 3f       	cpi	r21, 0xFF	; 255
+ a02:	71 f0       	breq	.+28     	; 0xa20 <__fp_splitA+0x1a>
+ a04:	47 95       	ror	r20
+
+00000a06 <__fp_splitA>:
+ a06:	88 0f       	add	r24, r24
+ a08:	97 fb       	bst	r25, 7
+ a0a:	99 1f       	adc	r25, r25
+ a0c:	61 f0       	breq	.+24     	; 0xa26 <__fp_splitA+0x20>
+ a0e:	9f 3f       	cpi	r25, 0xFF	; 255
+ a10:	79 f0       	breq	.+30     	; 0xa30 <__fp_splitA+0x2a>
+ a12:	87 95       	ror	r24
+ a14:	08 95       	ret
+ a16:	12 16       	cp	r1, r18
+ a18:	13 06       	cpc	r1, r19
+ a1a:	14 06       	cpc	r1, r20
+ a1c:	55 1f       	adc	r21, r21
+ a1e:	f2 cf       	rjmp	.-28     	; 0xa04 <__fp_split3+0xe>
+ a20:	46 95       	lsr	r20
+ a22:	f1 df       	rcall	.-30     	; 0xa06 <__fp_splitA>
+ a24:	08 c0       	rjmp	.+16     	; 0xa36 <__fp_splitA+0x30>
+ a26:	16 16       	cp	r1, r22
+ a28:	17 06       	cpc	r1, r23
+ a2a:	18 06       	cpc	r1, r24
+ a2c:	99 1f       	adc	r25, r25
+ a2e:	f1 cf       	rjmp	.-30     	; 0xa12 <__fp_splitA+0xc>
+ a30:	86 95       	lsr	r24
+ a32:	71 05       	cpc	r23, r1
+ a34:	61 05       	cpc	r22, r1
+ a36:	08 94       	sec
+ a38:	08 95       	ret
+
+00000a3a <__fp_zero>:
+ a3a:	e8 94       	clt
+
+00000a3c <__fp_szero>:
+ a3c:	bb 27       	eor	r27, r27
+ a3e:	66 27       	eor	r22, r22
+ a40:	77 27       	eor	r23, r23
+ a42:	cb 01       	movw	r24, r22
+ a44:	97 f9       	bld	r25, 7
+ a46:	08 95       	ret
+
+00000a48 <_exit>:
+ a48:	f8 94       	cli
+
+00000a4a <__stop_program>:
+ a4a:	ff cf       	rjmp	.-2      	; 0xa4a <__stop_program>

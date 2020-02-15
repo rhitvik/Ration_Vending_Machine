@@ -1,0 +1,1285 @@
+
+VM2.1atmega8MASTER.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000580  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800060  00000580  00000614  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          0000000c  00800060  00800060  00000614  2**0
+                  ALLOC
+  3 .stab         00000c18  00000000  00000000  00000614  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  4 .stabstr      000001ab  00000000  00000000  0000122c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_aranges 00000080  00000000  00000000  000013d8  2**3
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00000c7a  00000000  00000000  00001458  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000250  00000000  00000000  000020d2  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000520  00000000  00000000  00002322  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000220  00000000  00000000  00002844  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000005b6  00000000  00000000  00002a64  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    000001c6  00000000  00000000  0000301a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	12 c0       	rjmp	.+36     	; 0x26 <__ctors_end>
+   2:	2c c0       	rjmp	.+88     	; 0x5c <__bad_interrupt>
+   4:	2b c0       	rjmp	.+86     	; 0x5c <__bad_interrupt>
+   6:	2a c0       	rjmp	.+84     	; 0x5c <__bad_interrupt>
+   8:	29 c0       	rjmp	.+82     	; 0x5c <__bad_interrupt>
+   a:	28 c0       	rjmp	.+80     	; 0x5c <__bad_interrupt>
+   c:	27 c0       	rjmp	.+78     	; 0x5c <__bad_interrupt>
+   e:	26 c0       	rjmp	.+76     	; 0x5c <__bad_interrupt>
+  10:	25 c0       	rjmp	.+74     	; 0x5c <__bad_interrupt>
+  12:	0d c2       	rjmp	.+1050   	; 0x42e <__vector_9>
+  14:	23 c0       	rjmp	.+70     	; 0x5c <__bad_interrupt>
+  16:	22 c0       	rjmp	.+68     	; 0x5c <__bad_interrupt>
+  18:	21 c0       	rjmp	.+66     	; 0x5c <__bad_interrupt>
+  1a:	20 c0       	rjmp	.+64     	; 0x5c <__bad_interrupt>
+  1c:	1f c0       	rjmp	.+62     	; 0x5c <__bad_interrupt>
+  1e:	1e c0       	rjmp	.+60     	; 0x5c <__bad_interrupt>
+  20:	1d c0       	rjmp	.+58     	; 0x5c <__bad_interrupt>
+  22:	1c c0       	rjmp	.+56     	; 0x5c <__bad_interrupt>
+  24:	1b c0       	rjmp	.+54     	; 0x5c <__bad_interrupt>
+
+00000026 <__ctors_end>:
+  26:	11 24       	eor	r1, r1
+  28:	1f be       	out	0x3f, r1	; 63
+  2a:	cf e5       	ldi	r28, 0x5F	; 95
+  2c:	d4 e0       	ldi	r29, 0x04	; 4
+  2e:	de bf       	out	0x3e, r29	; 62
+  30:	cd bf       	out	0x3d, r28	; 61
+
+00000032 <__do_copy_data>:
+  32:	10 e0       	ldi	r17, 0x00	; 0
+  34:	a0 e6       	ldi	r26, 0x60	; 96
+  36:	b0 e0       	ldi	r27, 0x00	; 0
+  38:	e0 e8       	ldi	r30, 0x80	; 128
+  3a:	f5 e0       	ldi	r31, 0x05	; 5
+  3c:	02 c0       	rjmp	.+4      	; 0x42 <__SREG__+0x3>
+  3e:	05 90       	lpm	r0, Z+
+  40:	0d 92       	st	X+, r0
+  42:	a0 36       	cpi	r26, 0x60	; 96
+  44:	b1 07       	cpc	r27, r17
+  46:	d9 f7       	brne	.-10     	; 0x3e <__SP_H__>
+
+00000048 <__do_clear_bss>:
+  48:	10 e0       	ldi	r17, 0x00	; 0
+  4a:	a0 e6       	ldi	r26, 0x60	; 96
+  4c:	b0 e0       	ldi	r27, 0x00	; 0
+  4e:	01 c0       	rjmp	.+2      	; 0x52 <.do_clear_bss_start>
+
+00000050 <.do_clear_bss_loop>:
+  50:	1d 92       	st	X+, r1
+
+00000052 <.do_clear_bss_start>:
+  52:	ac 36       	cpi	r26, 0x6C	; 108
+  54:	b1 07       	cpc	r27, r17
+  56:	e1 f7       	brne	.-8      	; 0x50 <.do_clear_bss_loop>
+  58:	db d1       	rcall	.+950    	; 0x410 <main>
+  5a:	90 c2       	rjmp	.+1312   	; 0x57c <_exit>
+
+0000005c <__bad_interrupt>:
+  5c:	d1 cf       	rjmp	.-94     	; 0x0 <__vectors>
+
+0000005e <_Z24initialise_GPIO_servicesv>:
+}
+
+////////////////
+void initialise_GPIO_services(void)
+{
+	DDRB = 0b11111111;
+  5e:	8f ef       	ldi	r24, 0xFF	; 255
+  60:	87 bb       	out	0x17, r24	; 23
+	PORTB= 0b00000000;
+  62:	18 ba       	out	0x18, r1	; 24
+	
+	DDRC = 0b111000;
+  64:	88 e3       	ldi	r24, 0x38	; 56
+  66:	84 bb       	out	0x14, r24	; 20
+	PORTC= 0b000111;
+  68:	87 e0       	ldi	r24, 0x07	; 7
+  6a:	85 bb       	out	0x15, r24	; 21
+	
+	DDRD = 0b11111100;
+  6c:	8c ef       	ldi	r24, 0xFC	; 252
+  6e:	81 bb       	out	0x11, r24	; 17
+	PORTD= 0b00000000;
+  70:	12 ba       	out	0x12, r1	; 18
+}
+  72:	08 95       	ret
+
+00000074 <_Z11UART_enablev>:
+////////////////
+void UART_enable(void)
+{
+	int baud = 9600;	
+	UCSRA &= ~(1 << U2X);	
+  74:	59 98       	cbi	0x0b, 1	; 11
+	uint16_t UBRRValue = lrint((F_CPU /(16L * baud)) - 1);	
+  76:	60 e0       	ldi	r22, 0x00	; 0
+  78:	70 e0       	ldi	r23, 0x00	; 0
+  7a:	80 ea       	ldi	r24, 0xA0	; 160
+  7c:	90 e4       	ldi	r25, 0x40	; 64
+  7e:	1b d2       	rcall	.+1078   	; 0x4b6 <lrint>
+	//Put the upper part of the baud number here (bits 8 to 11)
+	UBRRH = (unsigned char) (UBRRValue >> 8);
+  80:	70 bd       	out	0x20, r23	; 32
+	//Put the remaining part of the baud number here
+	UBRRL = (unsigned char) UBRRValue;
+  82:	69 b9       	out	0x09, r22	; 9
+	//Enable the receiver and transmitter
+	UCSRB |= (1 << RXEN) | (1 << TXEN);
+  84:	8a b1       	in	r24, 0x0a	; 10
+  86:	88 61       	ori	r24, 0x18	; 24
+  88:	8a b9       	out	0x0a, r24	; 10
+//	UCSRB &= ~(1 << TXCIE);
+//	UCSRB &= ~(1 << RXCIE);
+//	UCSRB &= ~(1 << UDRIE);
+//	UCSRB |= (1 << TXCIE) | (1 << RXCIE) | (1<<UDRIE);	
+	UCSRC |= (1 << USBS); //Sets 2 stop bits
+  8a:	80 b5       	in	r24, 0x20	; 32
+  8c:	88 60       	ori	r24, 0x08	; 8
+  8e:	80 bd       	out	0x20, r24	; 32
+	UCSRC |= (1 << UPM1); //Sets parity to EVEN
+  90:	80 b5       	in	r24, 0x20	; 32
+  92:	80 62       	ori	r24, 0x20	; 32
+  94:	80 bd       	out	0x20, r24	; 32
+	UCSRC |= (3 << UCSZ0); //Alternative code for 8-bit data length
+  96:	80 b5       	in	r24, 0x20	; 32
+  98:	86 60       	ori	r24, 0x06	; 6
+  9a:	80 bd       	out	0x20, r24	; 32
+}
+  9c:	08 95       	ret
+
+0000009e <_Z11RecieveUARTv>:
+void RecieveUART(void)
+{
+	while (! (UCSRA & (1 << RXC)) );
+  9e:	5f 9b       	sbis	0x0b, 7	; 11
+  a0:	fe cf       	rjmp	.-4      	; 0x9e <_Z11RecieveUARTv>
+	dataRecieved = UDR;
+  a2:	8c b1       	in	r24, 0x0c	; 12
+  a4:	80 93 6b 00 	sts	0x006B, r24
+}
+  a8:	08 95       	ret
+
+000000aa <_Z12TransmitUARTh>:
+void TransmitUART(uint8_t data)
+{
+	while (! (UCSRA & (1 << UDRE)) );
+  aa:	5d 9b       	sbis	0x0b, 5	; 11
+  ac:	fe cf       	rjmp	.-4      	; 0xaa <_Z12TransmitUARTh>
+	UDR = data;
+  ae:	8c b9       	out	0x0c, r24	; 12
+}
+  b0:	08 95       	ret
+
+000000b2 <_Z19initialize_PWM_modev>:
+////////////////
+void initialize_PWM_mode(void)
+{
+	TCCR1A |= (1<<WGM11);
+  b2:	8f b5       	in	r24, 0x2f	; 47
+  b4:	82 60       	ori	r24, 0x02	; 2
+  b6:	8f bd       	out	0x2f, r24	; 47
+	TCCR1B |= (1<<WGM12) |(1<<WGM13) |(1<<CS10);
+  b8:	8e b5       	in	r24, 0x2e	; 46
+  ba:	89 61       	ori	r24, 0x19	; 25
+  bc:	8e bd       	out	0x2e, r24	; 46
+	ICR1 = 19999; //top value
+  be:	8f e1       	ldi	r24, 0x1F	; 31
+  c0:	9e e4       	ldi	r25, 0x4E	; 78
+  c2:	97 bd       	out	0x27, r25	; 39
+  c4:	86 bd       	out	0x26, r24	; 38
+	TCNT1 = 0;
+  c6:	1d bc       	out	0x2d, r1	; 45
+  c8:	1c bc       	out	0x2c, r1	; 44
+}
+  ca:	08 95       	ret
+
+000000cc <_Z16is_COIN_receivedv>:
+}
+void is_COIN_received(void)
+{
+	while(4)
+	{
+		if (bit_is_clear(PINC,2))
+  cc:	9a 99       	sbic	0x13, 2	; 19
+  ce:	fe cf       	rjmp	.-4      	; 0xcc <_Z16is_COIN_receivedv>
+		{
+			PORTC |= (1<<PINC5);
+  d0:	ad 9a       	sbi	0x15, 5	; 21
+			GOT_COIN = 1;			
+  d2:	81 e0       	ldi	r24, 0x01	; 1
+  d4:	80 93 61 00 	sts	0x0061, r24
+			break;
+		}
+	}
+}
+  d8:	08 95       	ret
+
+000000da <_Z11_coin_delayv>:
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  da:	8f eb       	ldi	r24, 0xBF	; 191
+  dc:	97 e2       	ldi	r25, 0x27	; 39
+  de:	a9 e0       	ldi	r26, 0x09	; 9
+  e0:	81 50       	subi	r24, 0x01	; 1
+  e2:	90 40       	sbci	r25, 0x00	; 0
+  e4:	a0 40       	sbci	r26, 0x00	; 0
+  e6:	e1 f7       	brne	.-8      	; 0xe0 <_Z11_coin_delayv+0x6>
+  e8:	00 c0       	rjmp	.+0      	; 0xea <_Z11_coin_delayv+0x10>
+  ea:	00 00       	nop
+	disable_driver_COIN();
+}
+void _coin_delay(void)
+{
+	_delay_ms(3000);
+}
+  ec:	08 95       	ret
+
+000000ee <_Z11accept_modev>:
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  ee:	80 e1       	ldi	r24, 0x10	; 16
+  f0:	8a 95       	dec	r24
+  f2:	f1 f7       	brne	.-4      	; 0xf0 <_Z11accept_modev+0x2>
+  f4:	00 c0       	rjmp	.+0      	; 0xf6 <_Z11accept_modev+0x8>
+void accept_mode(void)
+{
+	_delay_us(50);
+	PORTB |= (1<<PINB4);
+  f6:	c4 9a       	sbi	0x18, 4	; 24
+	PORTB &=~ (1<<PINB5);
+  f8:	c5 98       	cbi	0x18, 5	; 24
+  fa:	80 e1       	ldi	r24, 0x10	; 16
+  fc:	8a 95       	dec	r24
+  fe:	f1 f7       	brne	.-4      	; 0xfc <_Z11accept_modev+0xe>
+ 100:	00 c0       	rjmp	.+0      	; 0x102 <_Z11accept_modev+0x14>
+	_delay_us(50);
+}
+ 102:	08 95       	ret
+
+00000104 <_Z11reject_modev>:
+ 104:	80 e1       	ldi	r24, 0x10	; 16
+ 106:	8a 95       	dec	r24
+ 108:	f1 f7       	brne	.-4      	; 0x106 <_Z11reject_modev+0x2>
+ 10a:	00 c0       	rjmp	.+0      	; 0x10c <_Z11reject_modev+0x8>
+void reject_mode(void)
+{
+	_delay_us(50);
+	PORTB |= (1<<PINB5);
+ 10c:	c5 9a       	sbi	0x18, 5	; 24
+	PORTB &=~ (1<<PINB4);
+ 10e:	c4 98       	cbi	0x18, 4	; 24
+ 110:	80 e1       	ldi	r24, 0x10	; 16
+ 112:	8a 95       	dec	r24
+ 114:	f1 f7       	brne	.-4      	; 0x112 <_Z11reject_modev+0xe>
+ 116:	00 c0       	rjmp	.+0      	; 0x118 <_Z11reject_modev+0x14>
+	_delay_us(50);
+}
+ 118:	08 95       	ret
+
+0000011a <_Z14start_PWM_COINv>:
+void start_PWM_COIN(void)
+{
+	TCCR1A |= (1<<COM1B1);
+ 11a:	8f b5       	in	r24, 0x2f	; 47
+ 11c:	80 62       	ori	r24, 0x20	; 32
+ 11e:	8f bd       	out	0x2f, r24	; 47
+	OCR1B = 5000;  //calibrate
+ 120:	88 e8       	ldi	r24, 0x88	; 136
+ 122:	93 e1       	ldi	r25, 0x13	; 19
+ 124:	99 bd       	out	0x29, r25	; 41
+ 126:	88 bd       	out	0x28, r24	; 40
+}
+ 128:	08 95       	ret
+
+0000012a <_Z13stop_PWM_COINv>:
+void stop_PWM_COIN(void)
+{
+	TCCR1A &= ~(1<<COM1B1);
+ 12a:	8f b5       	in	r24, 0x2f	; 47
+ 12c:	8f 7d       	andi	r24, 0xDF	; 223
+ 12e:	8f bd       	out	0x2f, r24	; 47
+	OCR1B = 0;
+ 130:	19 bc       	out	0x29, r1	; 41
+ 132:	18 bc       	out	0x28, r1	; 40
+}
+ 134:	08 95       	ret
+
+00000136 <_Z19disable_driver_COINv>:
+ 136:	80 e1       	ldi	r24, 0x10	; 16
+ 138:	8a 95       	dec	r24
+ 13a:	f1 f7       	brne	.-4      	; 0x138 <_Z19disable_driver_COINv+0x2>
+ 13c:	00 c0       	rjmp	.+0      	; 0x13e <_Z19disable_driver_COINv+0x8>
+void disable_driver_COIN(void)
+{
+	_delay_us(50);
+	PORTB &=~ (1<<PINB2);
+ 13e:	c2 98       	cbi	0x18, 2	; 24
+	PORTB &=~ (1<<PINB4);
+ 140:	c4 98       	cbi	0x18, 4	; 24
+	PORTB &=~ (1<<PINB5);
+ 142:	c5 98       	cbi	0x18, 5	; 24
+ 144:	80 e1       	ldi	r24, 0x10	; 16
+ 146:	8a 95       	dec	r24
+ 148:	f1 f7       	brne	.-4      	; 0x146 <_Z19disable_driver_COINv+0x10>
+ 14a:	00 c0       	rjmp	.+0      	; 0x14c <_Z19disable_driver_COINv+0x16>
+	_delay_us(50);
+}
+ 14c:	08 95       	ret
+
+0000014e <_Z11REJECT_COINv>:
+	stop_PWM_COIN();
+	disable_driver_COIN();
+}
+void REJECT_COIN(void)
+{
+	reject_mode();
+ 14e:	da df       	rcall	.-76     	; 0x104 <_Z11reject_modev>
+	start_PWM_COIN();
+ 150:	e4 df       	rcall	.-56     	; 0x11a <_Z14start_PWM_COINv>
+	_coin_delay();
+ 152:	c3 df       	rcall	.-122    	; 0xda <_Z11_coin_delayv>
+	stop_PWM_COIN();
+ 154:	ea df       	rcall	.-44     	; 0x12a <_Z13stop_PWM_COINv>
+	disable_driver_COIN();
+ 156:	ef df       	rcall	.-34     	; 0x136 <_Z19disable_driver_COINv>
+}
+ 158:	08 95       	ret
+
+0000015a <_Z11ACCEPT_COINv>:
+	}
+}
+/////////////////
+void ACCEPT_COIN(void)
+{
+	accept_mode();
+ 15a:	c9 df       	rcall	.-110    	; 0xee <_Z11accept_modev>
+	start_PWM_COIN();
+ 15c:	de df       	rcall	.-68     	; 0x11a <_Z14start_PWM_COINv>
+	_coin_delay();
+ 15e:	bd df       	rcall	.-134    	; 0xda <_Z11_coin_delayv>
+	stop_PWM_COIN();
+ 160:	e4 df       	rcall	.-56     	; 0x12a <_Z13stop_PWM_COINv>
+	disable_driver_COIN();
+ 162:	e9 df       	rcall	.-46     	; 0x136 <_Z19disable_driver_COINv>
+}
+ 164:	08 95       	ret
+
+00000166 <_Z15dispatch_motor1v>:
+ 166:	80 e1       	ldi	r24, 0x10	; 16
+ 168:	8a 95       	dec	r24
+ 16a:	f1 f7       	brne	.-4      	; 0x168 <_Z15dispatch_motor1v+0x2>
+ 16c:	00 c0       	rjmp	.+0      	; 0x16e <_Z15dispatch_motor1v+0x8>
+}
+////////////////
+void dispatch_motor1(void)
+{
+	_delay_us(50);
+	PORTB |= (1<<PINB0);
+ 16e:	c0 9a       	sbi	0x18, 0	; 24
+	PORTB &=~ (1<<PINB3);
+ 170:	c3 98       	cbi	0x18, 3	; 24
+ 172:	80 e1       	ldi	r24, 0x10	; 16
+ 174:	8a 95       	dec	r24
+ 176:	f1 f7       	brne	.-4      	; 0x174 <_Z15dispatch_motor1v+0xe>
+ 178:	00 c0       	rjmp	.+0      	; 0x17a <_Z15dispatch_motor1v+0x14>
+	_delay_us(50);
+}
+ 17a:	08 95       	ret
+
+0000017c <_Z16start_PWM_motor1v>:
+void start_PWM_motor1(void)
+{
+	TCCR1A |= (1<<COM1A1);
+ 17c:	8f b5       	in	r24, 0x2f	; 47
+ 17e:	80 68       	ori	r24, 0x80	; 128
+ 180:	8f bd       	out	0x2f, r24	; 47
+	OCR1A = 5000; //calibrate
+ 182:	88 e8       	ldi	r24, 0x88	; 136
+ 184:	93 e1       	ldi	r25, 0x13	; 19
+ 186:	9b bd       	out	0x2b, r25	; 43
+ 188:	8a bd       	out	0x2a, r24	; 42
+}
+ 18a:	08 95       	ret
+
+0000018c <_Z15stop_PWM_motor1v>:
+void stop_PWM_motor1(void)
+{
+	TCCR1A &=~ (1<<COM1A1);
+ 18c:	8f b5       	in	r24, 0x2f	; 47
+ 18e:	8f 77       	andi	r24, 0x7F	; 127
+ 190:	8f bd       	out	0x2f, r24	; 47
+	OCR1A = 0;
+ 192:	1b bc       	out	0x2b, r1	; 43
+ 194:	1a bc       	out	0x2a, r1	; 42
+}
+ 196:	08 95       	ret
+
+00000198 <_Z15disable_driver1v>:
+void disable_driver1(void)
+{
+	PORTB &=~ (1<<PINB1);
+ 198:	c1 98       	cbi	0x18, 1	; 24
+	PORTB &=~ (1<<PINB0);
+ 19a:	c0 98       	cbi	0x18, 0	; 24
+	PORTB &=~ (1<<PINB3);
+ 19c:	c3 98       	cbi	0x18, 3	; 24
+}
+ 19e:	08 95       	ret
+
+000001a0 <_Z18initialize_counterv>:
+////////////////
+void initialize_counter(void)
+{
+	TCCR0 |= (1<<CS01)|(1<<CS00);
+ 1a0:	83 b7       	in	r24, 0x33	; 51
+ 1a2:	83 60       	ori	r24, 0x03	; 3
+ 1a4:	83 bf       	out	0x33, r24	; 51
+	TIMSK |= (1<<TOIE0);
+ 1a6:	89 b7       	in	r24, 0x39	; 57
+ 1a8:	81 60       	ori	r24, 0x01	; 1
+ 1aa:	89 bf       	out	0x39, r24	; 57
+	TCNT0 = 0;
+ 1ac:	12 be       	out	0x32, r1	; 50
+}
+ 1ae:	08 95       	ret
+
+000001b0 <_Z12stop_counterv>:
+void stop_counter(void)
+{
+	TCCR0 &=~ (1<<CS00);
+ 1b0:	83 b7       	in	r24, 0x33	; 51
+ 1b2:	8e 7f       	andi	r24, 0xFE	; 254
+ 1b4:	83 bf       	out	0x33, r24	; 51
+	TCCR0 &=~ (1<<CS01);
+ 1b6:	83 b7       	in	r24, 0x33	; 51
+ 1b8:	8d 7f       	andi	r24, 0xFD	; 253
+ 1ba:	83 bf       	out	0x33, r24	; 51
+	TIMSK &=~ (1<<TOIE0);
+ 1bc:	89 b7       	in	r24, 0x39	; 57
+ 1be:	8e 7f       	andi	r24, 0xFE	; 254
+ 1c0:	89 bf       	out	0x39, r24	; 57
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 1c2:	89 ef       	ldi	r24, 0xF9	; 249
+ 1c4:	90 e0       	ldi	r25, 0x00	; 0
+ 1c6:	01 97       	sbiw	r24, 0x01	; 1
+ 1c8:	f1 f7       	brne	.-4      	; 0x1c6 <_Z12stop_counterv+0x16>
+ 1ca:	00 c0       	rjmp	.+0      	; 0x1cc <_Z12stop_counterv+0x1c>
+ 1cc:	00 00       	nop
+	_delay_ms(1);
+	TCNT0=0;
+ 1ce:	12 be       	out	0x32, r1	; 50
+}
+ 1d0:	08 95       	ret
+
+000001d2 <_Z18receive_product_IDv>:
+////////////////
+void receive_product_ID(void)
+{
+	while(5)
+	{
+		RecieveUART();
+ 1d2:	65 df       	rcall	.-310    	; 0x9e <_Z11RecieveUARTv>
+		
+		if (dataRecieved == product_1)
+ 1d4:	80 91 6b 00 	lds	r24, 0x006B
+ 1d8:	81 31       	cpi	r24, 0x11	; 17
+ 1da:	31 f4       	brne	.+12     	; 0x1e8 <_Z18receive_product_IDv+0x16>
+		{
+			product = 1;
+ 1dc:	81 e0       	ldi	r24, 0x01	; 1
+ 1de:	80 93 6a 00 	sts	0x006A, r24
+			
+			dispatch_motor1();
+ 1e2:	c1 df       	rcall	.-126    	; 0x166 <_Z15dispatch_motor1v>
+			start_PWM_motor1();
+ 1e4:	cb df       	rcall	.-106    	; 0x17c <_Z16start_PWM_motor1v>
+			
+			break;
+ 1e6:	08 95       	ret
+		}
+		else
+		if (dataRecieved == product_2)
+ 1e8:	82 32       	cpi	r24, 0x22	; 34
+ 1ea:	21 f4       	brne	.+8      	; 0x1f4 <_Z18receive_product_IDv+0x22>
+		{
+			product = 2;
+ 1ec:	82 e0       	ldi	r24, 0x02	; 2
+ 1ee:	80 93 6a 00 	sts	0x006A, r24
+			
+			break;
+ 1f2:	08 95       	ret
+		}
+		else
+		if (dataRecieved == product_3)
+ 1f4:	83 33       	cpi	r24, 0x33	; 51
+ 1f6:	21 f4       	brne	.+8      	; 0x200 <_Z18receive_product_IDv+0x2e>
+		{
+			product = 3;
+ 1f8:	83 e0       	ldi	r24, 0x03	; 3
+ 1fa:	80 93 6a 00 	sts	0x006A, r24
+			
+			break;
+ 1fe:	08 95       	ret
+		}
+		else
+		if (dataRecieved == product_4)
+ 200:	84 34       	cpi	r24, 0x44	; 68
+ 202:	39 f7       	brne	.-50     	; 0x1d2 <_Z18receive_product_IDv>
+		{
+			product = 4;
+ 204:	84 e0       	ldi	r24, 0x04	; 4
+ 206:	80 93 6a 00 	sts	0x006A, r24
+ 20a:	08 95       	ret
+
+0000020c <_Z18receive_final_datav>:
+}
+void receive_final_data(void)
+{	
+	while(6)
+	{
+		RecieveUART();
+ 20c:	48 df       	rcall	.-368    	; 0x9e <_Z11RecieveUARTv>
+		
+		PORTD = 0;
+ 20e:	12 ba       	out	0x12, r1	; 18
+		
+		if (dataRecieved == accept_coin)
+ 210:	80 91 6b 00 	lds	r24, 0x006B
+ 214:	8c 3c       	cpi	r24, 0xCC	; 204
+ 216:	f1 f4       	brne	.+60     	; 0x254 <_Z18receive_final_datav+0x48>
+		{
+			if (product == 1)
+ 218:	80 91 6a 00 	lds	r24, 0x006A
+ 21c:	81 30       	cpi	r24, 0x01	; 1
+ 21e:	61 f4       	brne	.+24     	; 0x238 <_Z18receive_final_datav+0x2c>
+			{
+				stop_PWM_motor1();
+ 220:	b5 df       	rcall	.-150    	; 0x18c <_Z15stop_PWM_motor1v>
+				disable_driver1();
+ 222:	ba df       	rcall	.-140    	; 0x198 <_Z15disable_driver1v>
+ 224:	83 ed       	ldi	r24, 0xD3	; 211
+ 226:	90 e3       	ldi	r25, 0x30	; 48
+ 228:	01 97       	sbiw	r24, 0x01	; 1
+ 22a:	f1 f7       	brne	.-4      	; 0x228 <_Z18receive_final_datav+0x1c>
+ 22c:	00 c0       	rjmp	.+0      	; 0x22e <_Z18receive_final_datav+0x22>
+ 22e:	00 00       	nop
+				_delay_ms(50);
+				
+				TransmitUART(TY_for_shopping);
+ 230:	8e ed       	ldi	r24, 0xDE	; 222
+ 232:	3b df       	rcall	.-394    	; 0xaa <_Z12TransmitUARTh>
+				
+				ACCEPT_COIN();
+ 234:	92 df       	rcall	.-220    	; 0x15a <_Z11ACCEPT_COINv>
+				
+				break;
+ 236:	08 95       	ret
+			}
+			else
+			if ( (product == 2) || (product == 3) )
+ 238:	98 2f       	mov	r25, r24
+ 23a:	92 50       	subi	r25, 0x02	; 2
+ 23c:	92 30       	cpi	r25, 0x02	; 2
+ 23e:	20 f4       	brcc	.+8      	; 0x248 <_Z18receive_final_datav+0x3c>
+			{
+				TransmitUART(TY_for_shopping);
+ 240:	8e ed       	ldi	r24, 0xDE	; 222
+ 242:	33 df       	rcall	.-410    	; 0xaa <_Z12TransmitUARTh>
+				
+				ACCEPT_COIN();
+ 244:	8a df       	rcall	.-236    	; 0x15a <_Z11ACCEPT_COINv>
+				
+				break;
+ 246:	08 95       	ret
+			}
+			else
+			if (product == 4)
+ 248:	84 30       	cpi	r24, 0x04	; 4
+ 24a:	01 f7       	brne	.-64     	; 0x20c <_Z18receive_final_datav>
+			{
+				TransmitUART(Pl_try_again);
+ 24c:	8d ee       	ldi	r24, 0xED	; 237
+ 24e:	2d df       	rcall	.-422    	; 0xaa <_Z12TransmitUARTh>
+				
+				REJECT_COIN();
+ 250:	7e df       	rcall	.-260    	; 0x14e <_Z11REJECT_COINv>
+				
+				break;
+ 252:	08 95       	ret
+			}
+		}
+		else
+		if (dataRecieved == return_coin)
+ 254:	8d 3d       	cpi	r24, 0xDD	; 221
+ 256:	d1 f6       	brne	.-76     	; 0x20c <_Z18receive_final_datav>
+		{
+			if (product == 1)
+ 258:	80 91 6a 00 	lds	r24, 0x006A
+ 25c:	81 30       	cpi	r24, 0x01	; 1
+ 25e:	61 f4       	brne	.+24     	; 0x278 <_Z18receive_final_datav+0x6c>
+			{
+				stop_PWM_motor1();
+ 260:	95 df       	rcall	.-214    	; 0x18c <_Z15stop_PWM_motor1v>
+				disable_driver1();
+ 262:	9a df       	rcall	.-204    	; 0x198 <_Z15disable_driver1v>
+ 264:	83 ed       	ldi	r24, 0xD3	; 211
+ 266:	90 e3       	ldi	r25, 0x30	; 48
+ 268:	01 97       	sbiw	r24, 0x01	; 1
+ 26a:	f1 f7       	brne	.-4      	; 0x268 <_Z18receive_final_datav+0x5c>
+ 26c:	00 c0       	rjmp	.+0      	; 0x26e <_Z18receive_final_datav+0x62>
+ 26e:	00 00       	nop
+				_delay_ms(50);
+				
+				TransmitUART(Pl_try_again);
+ 270:	8d ee       	ldi	r24, 0xED	; 237
+ 272:	1b df       	rcall	.-458    	; 0xaa <_Z12TransmitUARTh>
+				
+				REJECT_COIN();
+ 274:	6c df       	rcall	.-296    	; 0x14e <_Z11REJECT_COINv>
+				
+				break;
+ 276:	08 95       	ret
+			}
+			else
+			if ( (product == 2) || (product == 3) )
+ 278:	98 2f       	mov	r25, r24
+ 27a:	92 50       	subi	r25, 0x02	; 2
+ 27c:	92 30       	cpi	r25, 0x02	; 2
+ 27e:	20 f4       	brcc	.+8      	; 0x288 <_Z18receive_final_datav+0x7c>
+			{
+				TransmitUART(Pl_try_again);
+ 280:	8d ee       	ldi	r24, 0xED	; 237
+ 282:	13 df       	rcall	.-474    	; 0xaa <_Z12TransmitUARTh>
+				
+				REJECT_COIN();
+ 284:	64 df       	rcall	.-312    	; 0x14e <_Z11REJECT_COINv>
+				
+				break;
+ 286:	08 95       	ret
+			}
+			else
+			if (product == 4)
+ 288:	84 30       	cpi	r24, 0x04	; 4
+ 28a:	09 f0       	breq	.+2      	; 0x28e <_Z18receive_final_datav+0x82>
+ 28c:	bf cf       	rjmp	.-130    	; 0x20c <_Z18receive_final_datav>
+			{
+				TransmitUART(Pl_try_again);
+ 28e:	8d ee       	ldi	r24, 0xED	; 237
+ 290:	0c df       	rcall	.-488    	; 0xaa <_Z12TransmitUARTh>
+				
+				REJECT_COIN();
+ 292:	5d df       	rcall	.-326    	; 0x14e <_Z11REJECT_COINv>
+ 294:	08 95       	ret
+
+00000296 <_Z16reset_parametersv>:
+			}
+		}
+	}
+}
+void reset_parameters(void)
+{
+ 296:	cf 93       	push	r28
+ 298:	df 93       	push	r29
+ 29a:	cd b7       	in	r28, 0x3d	; 61
+ 29c:	de b7       	in	r29, 0x3e	; 62
+ 29e:	27 97       	sbiw	r28, 0x07	; 7
+ 2a0:	0f b6       	in	r0, 0x3f	; 63
+ 2a2:	f8 94       	cli
+ 2a4:	de bf       	out	0x3e, r29	; 62
+ 2a6:	0f be       	out	0x3f, r0	; 63
+ 2a8:	cd bf       	out	0x3d, r28	; 61
+	uint8_t dataRecieved = 0;
+	uint8_t product = 0;
+
+	volatile unsigned int count = 0;
+ 2aa:	1f 82       	std	Y+7, r1	; 0x07
+ 2ac:	1e 82       	std	Y+6, r1	; 0x06
+	volatile unsigned int count1 = 0;
+ 2ae:	1d 82       	std	Y+5, r1	; 0x05
+ 2b0:	1c 82       	std	Y+4, r1	; 0x04
+	volatile uint8_t mini_FAIL = 0;
+ 2b2:	1b 82       	std	Y+3, r1	; 0x03
+	volatile uint8_t FAIL = 0;
+ 2b4:	1a 82       	std	Y+2, r1	; 0x02
+
+	uint8_t something_is_inserted = 0;
+	uint8_t METAL = 0;
+	uint8_t GOT_COIN = 0;
+	volatile uint8_t COIN_is_Authentic = 0;
+ 2b6:	19 82       	std	Y+1, r1	; 0x01
+	
+ 	PORTD= 0b00000000;
+ 2b8:	12 ba       	out	0x12, r1	; 18
+ 	PORTC= 0b000111;
+ 2ba:	87 e0       	ldi	r24, 0x07	; 7
+ 2bc:	85 bb       	out	0x15, r24	; 21
+ 	PORTB= 0;
+ 2be:	18 ba       	out	0x18, r1	; 24
+ 2c0:	83 ed       	ldi	r24, 0xD3	; 211
+ 2c2:	90 e3       	ldi	r25, 0x30	; 48
+ 2c4:	01 97       	sbiw	r24, 0x01	; 1
+ 2c6:	f1 f7       	brne	.-4      	; 0x2c4 <_Z16reset_parametersv+0x2e>
+ 2c8:	00 c0       	rjmp	.+0      	; 0x2ca <_Z16reset_parametersv+0x34>
+ 2ca:	00 00       	nop
+ 	
+	_delay_ms(50);
+}
+ 2cc:	27 96       	adiw	r28, 0x07	; 7
+ 2ce:	0f b6       	in	r0, 0x3f	; 63
+ 2d0:	f8 94       	cli
+ 2d2:	de bf       	out	0x3e, r29	; 62
+ 2d4:	0f be       	out	0x3f, r0	; 63
+ 2d6:	cd bf       	out	0x3d, r28	; 61
+ 2d8:	df 91       	pop	r29
+ 2da:	cf 91       	pop	r28
+ 2dc:	08 95       	ret
+
+000002de <_Z11check_METALv>:
+			}
+		}
+	}
+}
+void check_METAL(void)
+{
+ 2de:	cf 93       	push	r28
+ 2e0:	df 93       	push	r29
+			break;
+		}
+		else 
+		if (bit_is_clear(PINC,2))
+		{
+			PORTD = 0b11111100;//////
+ 2e2:	dc ef       	ldi	r29, 0xFC	; 252
+			_delay_ms(2000);//////
+			PORTD = 0;//////
+			GOT_COIN = 1;
+ 2e4:	c1 e0       	ldi	r28, 0x01	; 1
+}
+void check_METAL(void)
+{
+	while(3)
+	{
+		if (bit_is_clear(PINC,1))
+ 2e6:	99 99       	sbic	0x13, 1	; 19
+ 2e8:	07 c0       	rjmp	.+14     	; 0x2f8 <_Z11check_METALv+0x1a>
+		{
+			PORTC |= (1<<PINC4);
+ 2ea:	ac 9a       	sbi	0x15, 4	; 21
+			METAL = 1;
+ 2ec:	81 e0       	ldi	r24, 0x01	; 1
+ 2ee:	80 93 62 00 	sts	0x0062, r24
+				reset_parameters();
+				initialise_COIN_monitoring_mechanism(); 
+			}
+		}		
+	}
+}
+ 2f2:	df 91       	pop	r29
+ 2f4:	cf 91       	pop	r28
+ 2f6:	08 95       	ret
+			PORTC |= (1<<PINC4);
+			METAL = 1;
+			break;
+		}
+		else 
+		if (bit_is_clear(PINC,2))
+ 2f8:	9a 99       	sbic	0x13, 2	; 19
+ 2fa:	f5 cf       	rjmp	.-22     	; 0x2e6 <_Z11check_METALv+0x8>
+		{
+			PORTD = 0b11111100;//////
+ 2fc:	d2 bb       	out	0x12, r29	; 18
+ 2fe:	8f e7       	ldi	r24, 0x7F	; 127
+ 300:	9a e1       	ldi	r25, 0x1A	; 26
+ 302:	a6 e0       	ldi	r26, 0x06	; 6
+ 304:	81 50       	subi	r24, 0x01	; 1
+ 306:	90 40       	sbci	r25, 0x00	; 0
+ 308:	a0 40       	sbci	r26, 0x00	; 0
+ 30a:	e1 f7       	brne	.-8      	; 0x304 <_Z11check_METALv+0x26>
+ 30c:	00 c0       	rjmp	.+0      	; 0x30e <_Z11check_METALv+0x30>
+ 30e:	00 00       	nop
+			_delay_ms(2000);//////
+			PORTD = 0;//////
+ 310:	12 ba       	out	0x12, r1	; 18
+			GOT_COIN = 1;
+ 312:	c0 93 61 00 	sts	0x0061, r28
+			if ( (something_is_inserted == 0)||(METAL == 0) )
+ 316:	80 91 63 00 	lds	r24, 0x0063
+ 31a:	88 23       	and	r24, r24
+ 31c:	21 f0       	breq	.+8      	; 0x326 <_Z11check_METALv+0x48>
+ 31e:	80 91 62 00 	lds	r24, 0x0062
+ 322:	88 23       	and	r24, r24
+ 324:	01 f7       	brne	.-64     	; 0x2e6 <_Z11check_METALv+0x8>
+			{
+				REJECT_COIN();
+ 326:	13 df       	rcall	.-474    	; 0x14e <_Z11REJECT_COINv>
+				reset_parameters();
+ 328:	b6 df       	rcall	.-148    	; 0x296 <_Z16reset_parametersv>
+				initialise_COIN_monitoring_mechanism(); 
+ 32a:	01 d0       	rcall	.+2      	; 0x32e <_Z36initialise_COIN_monitoring_mechanismv>
+ 32c:	dc cf       	rjmp	.-72     	; 0x2e6 <_Z11check_METALv+0x8>
+
+0000032e <_Z36initialise_COIN_monitoring_mechanismv>:
+	TCNT1 = 0;
+}
+////////////////
+void initialise_COIN_monitoring_mechanism(void)
+{
+	PORTD |= (1<<PIND2);
+ 32e:	92 9a       	sbi	0x12, 2	; 18
+	Check_if_something_inserted();
+ 330:	27 d0       	rcall	.+78     	; 0x380 <_Z27Check_if_something_insertedv>
+	if (something_is_inserted == 1)
+ 332:	80 91 63 00 	lds	r24, 0x0063
+ 336:	81 30       	cpi	r24, 0x01	; 1
+ 338:	11 f5       	brne	.+68     	; 0x37e <_Z36initialise_COIN_monitoring_mechanismv+0x50>
+	{
+		check_METAL();
+ 33a:	d1 df       	rcall	.-94     	; 0x2de <_Z11check_METALv>
+		
+		if (METAL == 1)
+ 33c:	80 91 62 00 	lds	r24, 0x0062
+ 340:	81 30       	cpi	r24, 0x01	; 1
+ 342:	e9 f4       	brne	.+58     	; 0x37e <_Z36initialise_COIN_monitoring_mechanismv+0x50>
+		{			
+			is_COIN_received();
+ 344:	c3 de       	rcall	.-634    	; 0xcc <_Z16is_COIN_receivedv>
+			
+			if (GOT_COIN == 1)
+ 346:	80 91 61 00 	lds	r24, 0x0061
+ 34a:	81 30       	cpi	r24, 0x01	; 1
+ 34c:	c1 f4       	brne	.+48     	; 0x37e <_Z36initialise_COIN_monitoring_mechanismv+0x50>
+			{
+				Check_Authenticity();
+ 34e:	41 d0       	rcall	.+130    	; 0x3d2 <_Z18Check_Authenticityv>
+				
+				if (COIN_is_Authentic == 0)
+ 350:	80 91 60 00 	lds	r24, 0x0060
+ 354:	88 23       	and	r24, r24
+ 356:	41 f4       	brne	.+16     	; 0x368 <_Z36initialise_COIN_monitoring_mechanismv+0x3a>
+				{
+					TransmitUART(coin_rejected);
+ 358:	8c ea       	ldi	r24, 0xAC	; 172
+ 35a:	a7 de       	rcall	.-690    	; 0xaa <_Z12TransmitUARTh>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 35c:	00 c0       	rjmp	.+0      	; 0x35e <_Z36initialise_COIN_monitoring_mechanismv+0x30>
+ 35e:	00 c0       	rjmp	.+0      	; 0x360 <_Z36initialise_COIN_monitoring_mechanismv+0x32>
+ 360:	00 00       	nop
+					_delay_us(5);
+					TransmitUART(coin_rejected);
+ 362:	8c ea       	ldi	r24, 0xAC	; 172
+ 364:	a2 de       	rcall	.-700    	; 0xaa <_Z12TransmitUARTh>
+ 366:	08 95       	ret
+				}				
+				else
+				if (COIN_is_Authentic == 1)
+ 368:	80 91 60 00 	lds	r24, 0x0060
+ 36c:	81 30       	cpi	r24, 0x01	; 1
+ 36e:	39 f4       	brne	.+14     	; 0x37e <_Z36initialise_COIN_monitoring_mechanismv+0x50>
+				{
+					TransmitUART(coin_accepted);
+ 370:	8a ec       	ldi	r24, 0xCA	; 202
+ 372:	9b de       	rcall	.-714    	; 0xaa <_Z12TransmitUARTh>
+ 374:	00 c0       	rjmp	.+0      	; 0x376 <_Z36initialise_COIN_monitoring_mechanismv+0x48>
+ 376:	00 c0       	rjmp	.+0      	; 0x378 <_Z36initialise_COIN_monitoring_mechanismv+0x4a>
+ 378:	00 00       	nop
+					_delay_us(5);
+					TransmitUART(coin_accepted);
+ 37a:	8a ec       	ldi	r24, 0xCA	; 202
+ 37c:	96 de       	rcall	.-724    	; 0xaa <_Z12TransmitUARTh>
+ 37e:	08 95       	ret
+
+00000380 <_Z27Check_if_something_insertedv>:
+			}
+		}
+	}
+}
+void Check_if_something_inserted(void)
+{
+ 380:	cf 93       	push	r28
+ 382:	df 93       	push	r29
+			break;
+		}
+		else 
+		if (bit_is_clear(PINC,2))
+		{
+			PORTD = 0b11111100;///////
+ 384:	dc ef       	ldi	r29, 0xFC	; 252
+			_delay_ms(2000);///////
+			PORTD = 0;///////
+			GOT_COIN = 1;
+ 386:	c1 e0       	ldi	r28, 0x01	; 1
+}
+void Check_if_something_inserted(void)
+{
+	while(2)
+	{
+		if (bit_is_clear(PINC,0))
+ 388:	83 b3       	in	r24, 0x13	; 19
+ 38a:	80 fd       	sbrc	r24, 0
+ 38c:	07 c0       	rjmp	.+14     	; 0x39c <_Z27Check_if_something_insertedv+0x1c>
+		{
+			PORTC |= (1<<PINC3);
+ 38e:	ab 9a       	sbi	0x15, 3	; 21
+			something_is_inserted = 1;
+ 390:	81 e0       	ldi	r24, 0x01	; 1
+ 392:	80 93 63 00 	sts	0x0063, r24
+				reset_parameters();
+				initialise_COIN_monitoring_mechanism(); 
+			}
+		}
+	}
+}
+ 396:	df 91       	pop	r29
+ 398:	cf 91       	pop	r28
+ 39a:	08 95       	ret
+			PORTC |= (1<<PINC3);
+			something_is_inserted = 1;
+			break;
+		}
+		else 
+		if (bit_is_clear(PINC,2))
+ 39c:	9a 99       	sbic	0x13, 2	; 19
+ 39e:	f4 cf       	rjmp	.-24     	; 0x388 <_Z27Check_if_something_insertedv+0x8>
+		{
+			PORTD = 0b11111100;///////
+ 3a0:	d2 bb       	out	0x12, r29	; 18
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 3a2:	8f e7       	ldi	r24, 0x7F	; 127
+ 3a4:	9a e1       	ldi	r25, 0x1A	; 26
+ 3a6:	a6 e0       	ldi	r26, 0x06	; 6
+ 3a8:	81 50       	subi	r24, 0x01	; 1
+ 3aa:	90 40       	sbci	r25, 0x00	; 0
+ 3ac:	a0 40       	sbci	r26, 0x00	; 0
+ 3ae:	e1 f7       	brne	.-8      	; 0x3a8 <_Z27Check_if_something_insertedv+0x28>
+ 3b0:	00 c0       	rjmp	.+0      	; 0x3b2 <_Z27Check_if_something_insertedv+0x32>
+ 3b2:	00 00       	nop
+			_delay_ms(2000);///////
+			PORTD = 0;///////
+ 3b4:	12 ba       	out	0x12, r1	; 18
+			GOT_COIN = 1;
+ 3b6:	c0 93 61 00 	sts	0x0061, r28
+			if ( (something_is_inserted == 0)||(METAL == 0) )
+ 3ba:	80 91 63 00 	lds	r24, 0x0063
+ 3be:	88 23       	and	r24, r24
+ 3c0:	21 f0       	breq	.+8      	; 0x3ca <_Z27Check_if_something_insertedv+0x4a>
+ 3c2:	80 91 62 00 	lds	r24, 0x0062
+ 3c6:	88 23       	and	r24, r24
+ 3c8:	f9 f6       	brne	.-66     	; 0x388 <_Z27Check_if_something_insertedv+0x8>
+			{
+				REJECT_COIN();
+ 3ca:	c1 de       	rcall	.-638    	; 0x14e <_Z11REJECT_COINv>
+				reset_parameters();
+ 3cc:	64 df       	rcall	.-312    	; 0x296 <_Z16reset_parametersv>
+				initialise_COIN_monitoring_mechanism(); 
+ 3ce:	af df       	rcall	.-162    	; 0x32e <_Z36initialise_COIN_monitoring_mechanismv>
+ 3d0:	db cf       	rjmp	.-74     	; 0x388 <_Z27Check_if_something_insertedv+0x8>
+
+000003d2 <_Z18Check_Authenticityv>:
+		}
+	}
+}
+void Check_Authenticity(void)
+{
+	if ( (METAL == 1) && (GOT_COIN == 1) && (something_is_inserted == 1) )
+ 3d2:	80 91 62 00 	lds	r24, 0x0062
+ 3d6:	81 30       	cpi	r24, 0x01	; 1
+ 3d8:	59 f4       	brne	.+22     	; 0x3f0 <_Z18Check_Authenticityv+0x1e>
+ 3da:	90 91 61 00 	lds	r25, 0x0061
+ 3de:	91 30       	cpi	r25, 0x01	; 1
+ 3e0:	39 f4       	brne	.+14     	; 0x3f0 <_Z18Check_Authenticityv+0x1e>
+ 3e2:	80 91 63 00 	lds	r24, 0x0063
+ 3e6:	81 30       	cpi	r24, 0x01	; 1
+ 3e8:	69 f4       	brne	.+26     	; 0x404 <_Z18Check_Authenticityv+0x32>
+	{
+		COIN_is_Authentic = 1;		
+ 3ea:	80 93 60 00 	sts	0x0060, r24
+ 3ee:	08 95       	ret
+	}
+	else
+	if ( (METAL == 0) || (GOT_COIN == 1) || (something_is_inserted == 0) )
+ 3f0:	88 23       	and	r24, r24
+ 3f2:	41 f0       	breq	.+16     	; 0x404 <_Z18Check_Authenticityv+0x32>
+ 3f4:	80 91 61 00 	lds	r24, 0x0061
+ 3f8:	81 30       	cpi	r24, 0x01	; 1
+ 3fa:	21 f0       	breq	.+8      	; 0x404 <_Z18Check_Authenticityv+0x32>
+ 3fc:	80 91 63 00 	lds	r24, 0x0063
+ 400:	88 23       	and	r24, r24
+ 402:	29 f4       	brne	.+10     	; 0x40e <_Z18Check_Authenticityv+0x3c>
+	{
+		COIN_is_Authentic = 0;
+ 404:	10 92 60 00 	sts	0x0060, r1
+		REJECT_COIN();
+ 408:	a2 de       	rcall	.-700    	; 0x14e <_Z11REJECT_COINv>
+		reset_parameters();
+ 40a:	45 df       	rcall	.-374    	; 0x296 <_Z16reset_parametersv>
+		initialise_COIN_monitoring_mechanism();
+ 40c:	90 df       	rcall	.-224    	; 0x32e <_Z36initialise_COIN_monitoring_mechanismv>
+ 40e:	08 95       	ret
+
+00000410 <main>:
+uint8_t GOT_COIN = 0;
+volatile uint8_t COIN_is_Authentic = 0;
+
+int main(void)
+{	
+	initialise_GPIO_services();
+ 410:	26 de       	rcall	.-948    	; 0x5e <_Z24initialise_GPIO_servicesv>
+	UART_enable();
+ 412:	30 de       	rcall	.-928    	; 0x74 <_Z11UART_enablev>
+	initialize_PWM_mode();
+ 414:	4e de       	rcall	.-868    	; 0xb2 <_Z19initialize_PWM_modev>
+	//initialize_counter();//to be placed when the dispatch starts!!
+	
+	sei();
+ 416:	78 94       	sei
+ 418:	87 ea       	ldi	r24, 0xA7	; 167
+ 41a:	91 e6       	ldi	r25, 0x61	; 97
+ 41c:	01 97       	sbiw	r24, 0x01	; 1
+ 41e:	f1 f7       	brne	.-4      	; 0x41c <main+0xc>
+ 420:	00 c0       	rjmp	.+0      	; 0x422 <main+0x12>
+ 422:	00 00       	nop
+	
+	while(1)
+	{
+		//TransmitUART(0xC3);		
+				
+		initialise_COIN_monitoring_mechanism();
+ 424:	84 df       	rcall	.-248    	; 0x32e <_Z36initialise_COIN_monitoring_mechanismv>
+		
+		receive_product_ID();
+ 426:	d5 de       	rcall	.-598    	; 0x1d2 <_Z18receive_product_IDv>
+		
+		receive_final_data();
+ 428:	f1 de       	rcall	.-542    	; 0x20c <_Z18receive_final_datav>
+		
+		reset_parameters();	
+ 42a:	35 df       	rcall	.-406    	; 0x296 <_Z16reset_parametersv>
+ 42c:	fb cf       	rjmp	.-10     	; 0x424 <main+0x14>
+
+0000042e <__vector_9>:
+ 	
+	_delay_ms(50);
+}
+///////////////
+ISR(TIMER0_OVF_vect)
+{
+ 42e:	1f 92       	push	r1
+ 430:	0f 92       	push	r0
+ 432:	0f b6       	in	r0, 0x3f	; 63
+ 434:	0f 92       	push	r0
+ 436:	11 24       	eor	r1, r1
+ 438:	8f 93       	push	r24
+ 43a:	9f 93       	push	r25
+	count++;
+ 43c:	80 91 68 00 	lds	r24, 0x0068
+ 440:	90 91 69 00 	lds	r25, 0x0069
+ 444:	01 96       	adiw	r24, 0x01	; 1
+ 446:	90 93 69 00 	sts	0x0069, r25
+ 44a:	80 93 68 00 	sts	0x0068, r24
+	if (count==61)
+ 44e:	80 91 68 00 	lds	r24, 0x0068
+ 452:	90 91 69 00 	lds	r25, 0x0069
+ 456:	8d 33       	cpi	r24, 0x3D	; 61
+ 458:	91 05       	cpc	r25, r1
+ 45a:	31 f5       	brne	.+76     	; 0x4a8 <__stack+0x49>
+	{
+		// 1 second has elapsed		
+		count=0;
+ 45c:	10 92 69 00 	sts	0x0069, r1
+ 460:	10 92 68 00 	sts	0x0068, r1
+		count1++;
+ 464:	80 91 66 00 	lds	r24, 0x0066
+ 468:	90 91 67 00 	lds	r25, 0x0067
+ 46c:	01 96       	adiw	r24, 0x01	; 1
+ 46e:	90 93 67 00 	sts	0x0067, r25
+ 472:	80 93 66 00 	sts	0x0066, r24
+		if (count1==10)
+ 476:	80 91 66 00 	lds	r24, 0x0066
+ 47a:	90 91 67 00 	lds	r25, 0x0067
+ 47e:	8a 30       	cpi	r24, 0x0A	; 10
+ 480:	91 05       	cpc	r25, r1
+ 482:	21 f4       	brne	.+8      	; 0x48c <__stack+0x2d>
+		{
+			mini_FAIL=1;
+ 484:	81 e0       	ldi	r24, 0x01	; 1
+ 486:	80 93 65 00 	sts	0x0065, r24
+ 48a:	0e c0       	rjmp	.+28     	; 0x4a8 <__stack+0x49>
+		}
+		
+		else
+		if (count1==20)/////// calibrate it further
+ 48c:	80 91 66 00 	lds	r24, 0x0066
+ 490:	90 91 67 00 	lds	r25, 0x0067
+ 494:	84 31       	cpi	r24, 0x14	; 20
+ 496:	91 05       	cpc	r25, r1
+ 498:	39 f4       	brne	.+14     	; 0x4a8 <__stack+0x49>
+		{
+			//return coin if not dispatched
+			count1=0;
+ 49a:	10 92 67 00 	sts	0x0067, r1
+ 49e:	10 92 66 00 	sts	0x0066, r1
+			FAIL=1;
+ 4a2:	81 e0       	ldi	r24, 0x01	; 1
+ 4a4:	80 93 64 00 	sts	0x0064, r24
+		}
+	}
+}
+ 4a8:	9f 91       	pop	r25
+ 4aa:	8f 91       	pop	r24
+ 4ac:	0f 90       	pop	r0
+ 4ae:	0f be       	out	0x3f, r0	; 63
+ 4b0:	0f 90       	pop	r0
+ 4b2:	1f 90       	pop	r1
+ 4b4:	18 95       	reti
+
+000004b6 <lrint>:
+ 4b6:	41 d0       	rcall	.+130    	; 0x53a <__fp_splitA>
+ 4b8:	a8 f1       	brcs	.+106    	; 0x524 <lrint+0x6e>
+ 4ba:	9e 57       	subi	r25, 0x7E	; 126
+ 4bc:	a8 f1       	brcs	.+106    	; 0x528 <lrint+0x72>
+ 4be:	98 51       	subi	r25, 0x18	; 24
+ 4c0:	60 f0       	brcs	.+24     	; 0x4da <lrint+0x24>
+ 4c2:	39 f1       	breq	.+78     	; 0x512 <lrint+0x5c>
+ 4c4:	98 30       	cpi	r25, 0x08	; 8
+ 4c6:	70 f5       	brcc	.+92     	; 0x524 <lrint+0x6e>
+ 4c8:	09 2e       	mov	r0, r25
+ 4ca:	99 27       	eor	r25, r25
+ 4cc:	66 0f       	add	r22, r22
+ 4ce:	77 1f       	adc	r23, r23
+ 4d0:	88 1f       	adc	r24, r24
+ 4d2:	99 1f       	adc	r25, r25
+ 4d4:	0a 94       	dec	r0
+ 4d6:	d1 f7       	brne	.-12     	; 0x4cc <lrint+0x16>
+ 4d8:	1c c0       	rjmp	.+56     	; 0x512 <lrint+0x5c>
+ 4da:	bb 27       	eor	r27, r27
+ 4dc:	99 3f       	cpi	r25, 0xF9	; 249
+ 4de:	4c f4       	brge	.+18     	; 0x4f2 <lrint+0x3c>
+ 4e0:	b1 11       	cpse	r27, r1
+ 4e2:	b1 e0       	ldi	r27, 0x01	; 1
+ 4e4:	b6 2b       	or	r27, r22
+ 4e6:	67 2f       	mov	r22, r23
+ 4e8:	78 2f       	mov	r23, r24
+ 4ea:	88 27       	eor	r24, r24
+ 4ec:	98 5f       	subi	r25, 0xF8	; 248
+ 4ee:	b1 f7       	brne	.-20     	; 0x4dc <lrint+0x26>
+ 4f0:	08 c0       	rjmp	.+16     	; 0x502 <lrint+0x4c>
+ 4f2:	86 95       	lsr	r24
+ 4f4:	77 95       	ror	r23
+ 4f6:	67 95       	ror	r22
+ 4f8:	b7 95       	ror	r27
+ 4fa:	08 f4       	brcc	.+2      	; 0x4fe <lrint+0x48>
+ 4fc:	b1 60       	ori	r27, 0x01	; 1
+ 4fe:	93 95       	inc	r25
+ 500:	c1 f7       	brne	.-16     	; 0x4f2 <lrint+0x3c>
+ 502:	bb 0f       	add	r27, r27
+ 504:	30 f4       	brcc	.+12     	; 0x512 <lrint+0x5c>
+ 506:	11 f4       	brne	.+4      	; 0x50c <lrint+0x56>
+ 508:	60 ff       	sbrs	r22, 0
+ 50a:	03 c0       	rjmp	.+6      	; 0x512 <lrint+0x5c>
+ 50c:	6f 5f       	subi	r22, 0xFF	; 255
+ 50e:	7f 4f       	sbci	r23, 0xFF	; 255
+ 510:	8f 4f       	sbci	r24, 0xFF	; 255
+ 512:	3e f4       	brtc	.+14     	; 0x522 <lrint+0x6c>
+ 514:	90 95       	com	r25
+ 516:	80 95       	com	r24
+ 518:	70 95       	com	r23
+ 51a:	61 95       	neg	r22
+ 51c:	7f 4f       	sbci	r23, 0xFF	; 255
+ 51e:	8f 4f       	sbci	r24, 0xFF	; 255
+ 520:	9f 4f       	sbci	r25, 0xFF	; 255
+ 522:	08 95       	ret
+ 524:	68 94       	set
+ 526:	24 c0       	rjmp	.+72     	; 0x570 <__fp_szero>
+ 528:	22 c0       	rjmp	.+68     	; 0x56e <__fp_zero>
+
+0000052a <__fp_split3>:
+ 52a:	57 fd       	sbrc	r21, 7
+ 52c:	90 58       	subi	r25, 0x80	; 128
+ 52e:	44 0f       	add	r20, r20
+ 530:	55 1f       	adc	r21, r21
+ 532:	59 f0       	breq	.+22     	; 0x54a <__fp_splitA+0x10>
+ 534:	5f 3f       	cpi	r21, 0xFF	; 255
+ 536:	71 f0       	breq	.+28     	; 0x554 <__fp_splitA+0x1a>
+ 538:	47 95       	ror	r20
+
+0000053a <__fp_splitA>:
+ 53a:	88 0f       	add	r24, r24
+ 53c:	97 fb       	bst	r25, 7
+ 53e:	99 1f       	adc	r25, r25
+ 540:	61 f0       	breq	.+24     	; 0x55a <__fp_splitA+0x20>
+ 542:	9f 3f       	cpi	r25, 0xFF	; 255
+ 544:	79 f0       	breq	.+30     	; 0x564 <__fp_splitA+0x2a>
+ 546:	87 95       	ror	r24
+ 548:	08 95       	ret
+ 54a:	12 16       	cp	r1, r18
+ 54c:	13 06       	cpc	r1, r19
+ 54e:	14 06       	cpc	r1, r20
+ 550:	55 1f       	adc	r21, r21
+ 552:	f2 cf       	rjmp	.-28     	; 0x538 <__fp_split3+0xe>
+ 554:	46 95       	lsr	r20
+ 556:	f1 df       	rcall	.-30     	; 0x53a <__fp_splitA>
+ 558:	08 c0       	rjmp	.+16     	; 0x56a <__fp_splitA+0x30>
+ 55a:	16 16       	cp	r1, r22
+ 55c:	17 06       	cpc	r1, r23
+ 55e:	18 06       	cpc	r1, r24
+ 560:	99 1f       	adc	r25, r25
+ 562:	f1 cf       	rjmp	.-30     	; 0x546 <__fp_splitA+0xc>
+ 564:	86 95       	lsr	r24
+ 566:	71 05       	cpc	r23, r1
+ 568:	61 05       	cpc	r22, r1
+ 56a:	08 94       	sec
+ 56c:	08 95       	ret
+
+0000056e <__fp_zero>:
+ 56e:	e8 94       	clt
+
+00000570 <__fp_szero>:
+ 570:	bb 27       	eor	r27, r27
+ 572:	66 27       	eor	r22, r22
+ 574:	77 27       	eor	r23, r23
+ 576:	cb 01       	movw	r24, r22
+ 578:	97 f9       	bld	r25, 7
+ 57a:	08 95       	ret
+
+0000057c <_exit>:
+ 57c:	f8 94       	cli
+
+0000057e <__stop_program>:
+ 57e:	ff cf       	rjmp	.-2      	; 0x57e <__stop_program>
